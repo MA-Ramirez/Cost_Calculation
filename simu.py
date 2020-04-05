@@ -458,11 +458,11 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
         #Upper limit should match with Go LEN
         plt.xlim(((inA+inB),400))
-        plt.title("General simulation $K_{A}$ = "+str(kA)+" vs $K_{B}$ = "+str(kB)+" ($h$ = "+str(h)+")")
+        plt.title("General simulation $K_{A}$ = "+str(kA)+" vs $K_{B}$ = "+str(kB)+" ($h$="+str(h)+")")
         plt.xlabel("Events")
         plt.ylabel("Normalized amount of plasmids ($\eta$)")
         plt.legend(loc = 4, fontsize = "x-small")
-        plt.savefig("Graph_" + str(kA) + "_" + str(kB) + "_" + str(int(h)) + "_OK.png")
+        plt.savefig("SimulationGraphs/Simu_h"+str(h)+"/Graph_" + str(kA) + "_" + str(kB) + "_" + str(int(h)) + ".png")
         plt.clf()
 
     #Return
@@ -551,8 +551,8 @@ def contourG(start,stop,hop,h,rep):
 
     #Data of stabilization is calculated in another script
     # this data is recorded on csv files for optimization
-    Sta = np.genfromtxt(str(h)+"Stable.csv", delimiter=",",usecols=1)
-    kIndex = np.genfromtxt(str(h)+"Stable.csv", delimiter=",",usecols=0)
+    Sta = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=1)
+    kIndex = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=0)
 
     #Initial inA y inB (same) is the average of both stabilizations, half half
     #Simulation every competition
@@ -589,17 +589,17 @@ def contourG(start,stop,hop,h,rep):
         xF+=1
 
     #txt with the data of the cost and of the variance of slope parameter
-    np.savetxt("DataCost_"+str(h)+".txt", Fi, delimiter=',')
-    np.savetxt("DataVariance_"+str(h)+".txt", vi, delimiter=',')
+    np.savetxt("Results/DataCost_"+str(h)+".txt", Fi, delimiter=',')
+    np.savetxt("Results/DataVariance_"+str(h)+".txt", vi, delimiter=',')
 
     #COST_CONTOUR_FIGURE
     #x,y,z,levels = number of divisions, cmap = color
-    plt.contourf(X, Y, Fi, 14, cmap="RdBu_r")
+    plt.contourf(X, Y, Fi, 16, cmap="RdBu_r")
     plt.colorbar()
     plt.xlabel("$K_{A}$")
     plt.ylabel("$K_{B}$")
     plt.title("Cost for plasmids type A ($h$ = "+str(h)+")")
-    plt.savefig("CostA_"+str(h)+".png")
+    plt.savefig("Results/CostA_"+str(h)+".png")
     plt.clf()
 
     #Variance contour figure
@@ -608,7 +608,7 @@ def contourG(start,stop,hop,h,rep):
     plt.xlabel("$K_{A}$")
     plt.ylabel("$K_{B}$")
     plt.title("Variance of the slope fit parameter type A ($h$ = "+str(h)+")",fontsize="small")
-    plt.savefig("VarianceA_"+str(h)+".png")
+    plt.savefig("Results/VarianceA_"+str(h)+".png")
     plt.clf()
 
     #Time of all the total simulation
@@ -616,4 +616,4 @@ def contourG(start,stop,hop,h,rep):
     print tsim
 
 #contourG(start,stop,hop,h,rep)
-contourG(1,3,3,3,1)
+contourG(2,5,4,4,1)

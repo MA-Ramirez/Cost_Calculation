@@ -32,7 +32,7 @@ def graphSta(h):
     plt.plot(0,0,c="white",label="$\overline{n}$="+str(round(Ph[0],3))+"$K$+"+str(round(Ph[1],3)))
     plt.legend(loc=7,fontsize="small")
     #plt.text(29, 150, "$\overline{n}$="+str(round(Ph[0],3))+"$K$+"+str(round(Ph[1],3)), bbox=dict(facecolor='g', alpha=0.2))
-    plt.savefig("Fit_Stabi_h"+str(h)+".png")
+    plt.savefig("StableGraphs/Fit_Stabi_h"+str(h)+".png")
     plt.clf()
 
     #Returns slope and y-intercept fit parameters
@@ -75,7 +75,7 @@ plt.xlabel("Hill Coefficient ($h$)")
 plt.ylabel("Slope of graph $\overline{n}$ vs $K$ ($m_{nK}$)")
 plt.legend(loc=1)
 plt.text(4, 9, "$m_{nK}$="+str(round(Phm[0],3))+"$e^{(-h)}$+"+str(round(Phm[1],3)), bbox=dict(facecolor='cyan', alpha=0.2))
-plt.savefig("GeneralFit_m_vs_h.png")
+plt.savefig("StableGraphs/GeneralFit_m_vs_h.png")
 plt.clf()
 
 cc = np.array([Ph2[1],Ph23[1],Ph27[1],Ph3[1],Ph33[1],Ph37[1],Ph4[1],Ph43[1],Ph47[1],Ph5[1]])
@@ -84,4 +84,4 @@ plt.title("y-intercept ($c_{nK}$) vs Hill Coefficient ($h$)")
 plt.xlabel("Hill Coefficient ($h$)")
 plt.ylabel("y-intercept of graph $\overline{n}$ vs $K$ ($c_{nK}$)")
 #plt.legend(loc=1)
-plt.savefig("GeneralFit_c_vs_h.png")
+plt.savefig("StableGraphs/GeneralFit_c_vs_h.png")

@@ -149,7 +149,7 @@ def exe(inA, h, kA):
     plt.title("Average Stabilization Number ($\overline{n}$)")
     plt.xlabel("Events")
     plt.ylabel("Number of plasmids")
-    plt.savefig("graph_" + str(kA)+ "_" + str(h) + ".png")
+    plt.savefig("h"+str(h)+"/graph_" + str(kA)+ "_" + str(h) + ".png")
     plt.clf()
     """
 
@@ -160,5 +160,5 @@ def exe(inA, h, kA):
 #for i in range(10,31):
 #    exe(1,3,i)
 
-exe(1,5,4.5)
-exe(1,5,40.5)
+exe(1,5,6)
+#exe(1,3,2.5)
