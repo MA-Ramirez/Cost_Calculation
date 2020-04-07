@@ -403,7 +403,12 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     cA = mAA[1]
     #Variance of the slope as a fit paramater
     covA = covAA[0][0]
-    print mAA, covA
+
+    #Print in Log txt ***
+    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    n = text_file.write("Fit Params A: "+str(mAA)+", "+str(covA)+"\n")
+    text_file.close()
+    #print mAA, covA
 
     #Linear fit type B
     #Same but for type B
@@ -414,7 +419,12 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     cB = mBB[1]
     #Variance of the slope as a fit paramater
     covB = covBB[0][0]
-    print mBB, covB
+
+    #Print in Log txt ***
+    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    n = text_file.write("Fit Params B: "+str(mBB)+", "+str(covB)+"\n")
+    text_file.close()
+    #print mBB, covB
 
 
     #----------COST_CALCULATION---------
@@ -423,7 +433,11 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Cost of type B
     FB = 2*mB*(inA+inB)
 
-    print "Fitness/Cost A: " +str(FA)
+    #Print in Log txt ***
+    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    n = text_file.write("Fitness/Cost A: "+str(FA)+"\n")
+    text_file.close()
+    #print "Fitness/Cost A: " +str(FA)
 
 
     #-----------------GRAPHS---------------------
@@ -491,7 +505,11 @@ def full(h,kA,kB,inI,rep):
      lFA = np.array([])
      lva = np.array([])
 
-     print kA,kB
+     #Print in Log txt ***
+     text_file = open("Results/Log_"+str(h)+".txt", "a+")
+     n = text_file.write("Competition: (kA,kB) "+str(kA)+", "+str(kB)+"\n")
+     text_file.close()
+     #print kA,kB
 
      #General rounds are rounds +1
      rounds = 599
@@ -536,16 +554,28 @@ def contourG(start,stop,hop,h,rep):
     # Example: np.linspace(2,4,3) = 2,3,4
     KKA = np.linspace(start,stop,hop)
     KKB = np.linspace(start,stop,hop)
-    print "RANGE OF CALCULATION:"
-    print KKA
+
+    #Print in Log txt ***
+    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    n = text_file.write("RANGE OF CALCULATION: "+str(KKA)+"\n")
+    text_file.close()
+
+    #print "RANGE OF CALCULATION:"
+    #print KKA
 
     #Generate Grid - KKA is x KKB is y
     X, Y = np.meshgrid(KKA, KKB)
 
     #Results of the cost of A = FA
     Fi = np.ones((len(KKA),len(KKB)))
-    print "LEN OF RANGE: "
-    print len(KKA), len(KKB)
+
+    #Print in Log txt ***
+    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    n = text_file.write("LEN OF RANGE: (KKA,KKB) "+str(len(KKA))+","+str(len(KKB))+"\n \n")
+    text_file.close()
+    #print "LEN OF RANGE: "
+    #print len(KKA), len(KKB)
+
     #Variance of the slope for type A
     vi = np.ones((len(KKA),len(KKB)))
 
@@ -562,8 +592,15 @@ def contourG(start,stop,hop,h,rep):
         #Stabilization value for kA
         inKA = np.where(kIndex==i)[0]
         Stable1 = Sta[inKA]
-        print "Stable1: " + str(Stable1)
-        print i
+
+        #Print in Log txt ***
+        text_file = open("Results/Log_"+str(h)+".txt", "a+")
+        n = text_file.write("STABLE1: "+ str(Stable1)+"   i = "+str(i)+"\n")
+        text_file.close()
+
+        #print "Stable1: " + str(Stable1)
+        #print i
+
         #Counter for location
         yF = 0
 
@@ -571,20 +608,45 @@ def contourG(start,stop,hop,h,rep):
             #Stabilization value for kB
             inKB = np.where(kIndex==j)[0]
             Stable2 = Sta[inKB]
-            print "Stable2: " + str(Stable2)
-            print j
+
+            #Print in Log txt ***
+            text_file = open("Results/Log_"+str(h)+".txt", "a+")
+            n = text_file.write("Stable2: "+ str(Stable2)+"   j = "+str(j)+"\n")
+            text_file.close()
+
+            #print "Stable2: " + str(Stable2)
+            #print j
 
             #Average of stabilization
             AvgStable = (Stable1 + Stable2)/2.0
             #Turns it into int, no decimal amount of plasmids
-            inI = int(AvgStable/2.0)
-            print "Average Stable: " + str(AvgStable)
-            print "InI: " + str(inI)
+            #PILAS
+            inI = int(AvgStable)
+
+            #Print in Log txt ***
+            text_file = open("Results/Log_"+str(h)+".txt", "a+")
+            n = text_file.write("Average Stable: "+ str(AvgStable)+"   InI: "+str(inI)+"\n")
+            text_file.close()
+
+            #print "Average Stable: " + str(AvgStable)
+            #print "InI: " + str(inI)
+
             #Assigns calculated cost and variance
             #Check comments for full - to only calculate cost use full
             Fi[xF,yF], vi[xF,yF] = full(h,i,j,inI,rep)
+
+            #Print in Log txt ***
+            text_file = open("Results/Log_"+str(h)+".txt", "a+")
+            n = text_file.write("---------//---------\n")
+            text_file.close()
+
             #Counter for location
             yF+=1
+
+        #Print in Log txt ***
+        text_file = open("Results/Log_"+str(h)+".txt", "a+")
+        n = text_file.write("\n")
+        text_file.close()
         #Counter for location
         xF+=1
 
@@ -613,7 +675,13 @@ def contourG(start,stop,hop,h,rep):
 
     #Time of all the total simulation
     tsim = round(time.time()-t0,3)
-    print tsim
+
+    #Print in Log txt ***
+    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    n = text_file.write("Total Simu Time "+ str(tsim))
+    text_file.close()
+
+    #print tsim
 
 #contourG(start,stop,hop,h,rep)
-contourG(2,5,4,4,1)
+contourG(1,3,5,3,1)
