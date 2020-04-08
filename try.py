@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 import time
 from scipy.optimize import curve_fit
 
-#------WHOLE SIMULATION-------
-#Whole simulation to obtain the contour graph of the cost
+
+#------SINGLE COMPETITION-------
+#Code to obtain the graph of a single competition
+# with rep repetitions
 
 #HILL FUNCTION FOR A REPRESSOR
 #Param: h Hill coefficient
@@ -376,9 +378,11 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Limits for performing the fit
     #Top cut is LENF
     #print "Fitcut: " + str(LENF)
-    #Initial limit is set so that 1 generation is allowed for
+    #Initial limit is set so that 1 generation is allowed
+    # (mainly done for competitions with equal k)
     # the system to globally stabilize
     cutIN = (inA)
+    print cutIN,LENF
 
     #Fit is done in the average simulation line
     #Array with delimitation that it is important for the fit
@@ -427,7 +431,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     text_file = open("Results/Log_"+str(h)+".txt", "a+")
     n = text_file.write("Fit Params B: "+str(mBB)+", "+str(covB)+"\n")
     text_file.close()
-    #print mBB, covB
 
 
     #----------COST_CALCULATION---------
@@ -474,7 +477,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         #plt.plot(0,0, c = "k", label = "Win " + str(kA) + " = " + str(GwinA) + "   Win " + str(kB) + " = " + str(GwinB))
 
         #Upper limit should match with Go LEN
-        #General simulation
+        #No se muestra parte de estabilizacion
         plt.xlim((0,400))
         plt.title("General simulation $K_{A}$ = "+str(kA)+" vs $K_{B}$ = "+str(kB)+" ($h$="+str(h)+")")
         plt.xlabel("Events")
@@ -487,10 +490,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #FA: the calculated cost of type A
     #covA: variance of the slope fit parameter of type A
     return FA, covA
-
-
-#Start measuring simulation time
-t0 = time.time()
 
 #Generates repetitions of the whole simulation to find an average of the Cost
 # for the same general simulation. It also gives the average of the Variance
@@ -540,155 +539,4 @@ def full(h,kA,kB,inI,rep):
      return avgFA, avgva
 
 
-#----------------COST_CONTOUR_FIGURE----------------
-
-#Creates the contour figure for the cost of type A (nxn graph)
-#The cost for each competition is the average of rep repetitions
-# for the whole simulation of the given competition
-#Param: start Initial K
-#Param: stop Final K
-#Param: hop Amount of values between start and stop
-#Param: Hill coefficient
-#Param: rep Repetitions for the whole simulation of a given competition
-#Return: Graph of Cost, Graph of variance of slope parameter
-#Return: txt with info of cost and variance of slope parameter
-def contourG(start,stop,hop,h,rep):
-    #Arrays for kA y kB that are gonna be used (nxn)
-    # Example: np.linspace(1,3,3) = 1,2,3
-    # Example: np.linspace(2,4,3) = 2,3,4
-    KKA = np.linspace(start,stop,hop)
-    KKB = np.linspace(start,stop,hop)
-
-    #Print in Log txt ***
-    text_file = open("Results/Log_"+str(h)+".txt", "a+")
-    n = text_file.write("RANGE OF CALCULATION: "+str(KKA)+"\n")
-    text_file.close()
-
-    #print "RANGE OF CALCULATION:"
-    #print KKA
-
-    #Generate Grid - KKA is x KKB is y
-    X, Y = np.meshgrid(KKA, KKB)
-
-    #Results of the cost of A = FA
-    Fi = np.ones((len(KKA),len(KKB)))
-
-    #Print in Log txt ***
-    text_file = open("Results/Log_"+str(h)+".txt", "a+")
-    n = text_file.write("LEN OF RANGE: (KKA,KKB) "+str(len(KKA))+","+str(len(KKB))+"\n \n")
-    text_file.close()
-    #print "LEN OF RANGE: "
-    #print len(KKA), len(KKB)
-
-    #Variance of the slope for type A
-    vi = np.ones((len(KKA),len(KKB)))
-
-    #Data of stabilization is calculated in another script
-    # this data is recorded on csv files for optimization
-    Sta = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=1)
-    kIndex = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=0)
-
-    #Initial inA y inB (same) is the average of both stabilizations, half half
-    #Simulation every competition
-    #Counter for location
-    xF = 0
-    for i in KKA:
-        #Stabilization value for kA
-        inKA = np.where(kIndex==i)[0]
-        Stable1 = Sta[inKA]
-
-        #Print in Log txt ***
-        text_file = open("Results/Log_"+str(h)+".txt", "a+")
-        n = text_file.write("STABLE1: "+ str(Stable1)+"   i = "+str(i)+"\n")
-        text_file.close()
-
-        #print "Stable1: " + str(Stable1)
-        #print i
-
-        #Counter for location
-        yF = 0
-
-        for j in KKB:
-            #Stabilization value for kB
-            inKB = np.where(kIndex==j)[0]
-            Stable2 = Sta[inKB]
-
-            #Print in Log txt ***
-            text_file = open("Results/Log_"+str(h)+".txt", "a+")
-            n = text_file.write("Stable2: "+ str(Stable2)+"   j = "+str(j)+"\n")
-            text_file.close()
-
-            #print "Stable2: " + str(Stable2)
-            #print j
-
-            #Average of stabilization
-            AvgStable = (Stable1 + Stable2)/2.0
-            #Turns it into int, no decimal amount of plasmids
-            inI = int(AvgStable/2.0)
-
-            #Print in Log txt ***
-            text_file = open("Results/Log_"+str(h)+".txt", "a+")
-            n = text_file.write("Average Stable: "+ str(AvgStable)+"   InI: "+str(inI)+"\n")
-            text_file.close()
-
-            #print "Average Stable: " + str(AvgStable)
-            #print "InI: " + str(inI)
-
-            #Assigns calculated cost and variance
-            #Check comments for full - to only calculate cost use full
-            Fi[xF,yF], vi[xF,yF] = full(h,i,j,inI,rep)
-
-            #Print in Log txt ***
-            text_file = open("Results/Log_"+str(h)+".txt", "a+")
-            n = text_file.write("---------//---------\n")
-            text_file.close()
-
-            #Counter for location
-            yF+=1
-
-        #Print in Log txt ***
-        text_file = open("Results/Log_"+str(h)+".txt", "a+")
-        n = text_file.write("\n")
-        text_file.close()
-        #Counter for location
-        xF+=1
-
-    #txt with the data of the cost and of the variance of slope parameter
-    np.savetxt("Results/DataCost_"+str(h)+".txt", Fi, delimiter=',')
-    np.savetxt("Results/DataVariance_"+str(h)+".txt", vi, delimiter=',')
-
-    #COST_CONTOUR_FIGURE
-    #x,y,z,levels = number of divisions, cmap = color
-    plt.contourf(X, Y, Fi, 16, cmap="RdBu_r")
-    plt.colorbar()
-    plt.xlabel("$K_{A}$")
-    plt.ylabel("$K_{B}$")
-    plt.xticks(KKA)
-    plt.yticks(KKB)
-    plt.title("Cost for plasmids type A ($h$ = "+str(h)+")")
-    plt.savefig("Results/CostA_"+str(h)+".png")
-    plt.clf()
-
-    #Variance contour figure
-    plt.contourf(X, Y, vi, cmap="YlOrRd")
-    plt.colorbar()
-    plt.xlabel("$K_{A}$")
-    plt.ylabel("$K_{B}$")
-    plt.xticks(KKA)
-    plt.yticks(KKB)
-    plt.title("Variance of the slope fit parameter type A ($h$ = "+str(h)+")",fontsize="small")
-    plt.savefig("Results/VarianceA_"+str(h)+".png")
-    plt.clf()
-
-    #Time of all the total simulation
-    tsim = round(time.time()-t0,3)
-
-    #Print in Log txt ***
-    text_file = open("Results/Log_"+str(h)+".txt", "a+")
-    n = text_file.write("Total Simu Time "+ str(tsim))
-    text_file.close()
-
-    #print tsim
-
-#contourG(start,stop,hop,h,rep)
-contourG(1,3,3,3,1)
+full(3,6.0,22.0,33.0,1)
