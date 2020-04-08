@@ -620,8 +620,7 @@ def contourG(start,stop,hop,h,rep):
             #Average of stabilization
             AvgStable = (Stable1 + Stable2)/2.0
             #Turns it into int, no decimal amount of plasmids
-            #PILAS
-            inI = int(AvgStable)
+            inI = int(AvgStable/2.0)
 
             #Print in Log txt ***
             text_file = open("Results/Log_"+str(h)+".txt", "a+")
@@ -684,4 +683,4 @@ def contourG(start,stop,hop,h,rep):
     #print tsim
 
 #contourG(start,stop,hop,h,rep)
-contourG(1,3,5,3,1)
+contourG(1,3,5,3,3)
