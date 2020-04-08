@@ -160,5 +160,5 @@ def exe(inA, h, kA):
 #for i in range(10,31):
 #    exe(1,3,i)
 
-exe(1,5,6)
-#exe(1,3,2.5)
+exe(1,2,3)
+exe(1,2,7)
