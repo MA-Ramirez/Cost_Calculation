@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 import time
 from scipy.optimize import curve_fit
 
-#------WHOLE SIMULATION-------
-#Whole simulation to obtain the contour graph of the cost
+
+#------SINGLE COMPETITION-------
+#Code to obtain the graph of a single competition
+# with rep repetitions
 
 #HILL FUNCTION FOR A REPRESSOR
 #Param: h Hill coefficient
@@ -308,12 +310,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Start measuring simulation time
     t0 = time.time()
 
-    #Array for all events of type A, in terms of plasmid amount, for all rounds
-    AA = np.array([])
-
-    #Array for all events of type B, in terms of plasmid amount, for all rounds
-    BB = np.array([])
-
     #Top limit for the average and the corresponding fit
     LENF = 250
 
@@ -327,13 +323,21 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     primerA = npA[:LENF]
     primerB = npB[:LENF]
 
+    TotalNA = pA
+    TotalNB = pB
+    TOTALG = pA+pB
+    plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), TOTALG, c = "darkorange")
+    #plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), np.ones(len(TOTALG))*np.mean(TOTALG), c = "fuchsia",linewidth = 3)
+    TT = np.mean(TOTALG)
+
+    #print TOTALG
+
     #Graph for first round simulation
     # type A = blue   type B = green
     #Condition to graph only 1 general simulation
-    #CHANGED!
     if (rep == cc) == True:
-        plt.plot(np.linspace(0,len(npA[:(inA+inB)]), num = len(npA)), npA, c = "b")
-        plt.plot(np.linspace(0,len(npB[:(inA+inB)]), num = len(npB)), npB, c = "g")
+        plt.plot(np.linspace(0,len(pA), num = len(pA)), pA, c = "b")
+        plt.plot(np.linspace(0,len(pB), num = len(pB)), pB, c = "g")
 
     #Subsequent rounds
     for i in range(rounds):
@@ -349,37 +353,49 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         # type A = blue   type B = green
         #Condition to graph only 1 general simulation
         if (rep == cc) == True:
-            plt.plot(np.linspace(0,len(npA), num = len(npA)), npA, c = "b")
-            plt.plot(np.linspace(0,len(npB), num = len(npB)), npB, c = "g")
+            plt.plot(np.linspace(0,len(pA), num = len(pA)), pA, c = "b")
+            plt.plot(np.linspace(0,len(pB), num = len(pB)), pB, c = "g")
 
         #Sum of plasmid amounts per event point
         primerA += npA[:LENF]
         primerB += npB[:LENF]
 
+        #TotalNA += pA
+        #TotalNB += pB
+
+        TOTALG = pA+pB
+        plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), TOTALG, c = "darkorange")
+        #plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), np.ones(len(TOTALG))*np.mean(TOTALG), c = "fuchsia",linewidth = 3)
+        TT= np.append(TT,np.mean(TOTALG))
+        #print pA
+        #print TOTALG
+
+
         #Length of arrays npA and npB are the same
         sizea = npA.size
-
-        #Addition of events of each round to the general array,
-        # of all events in terms of plasmid amount, for both types
-        AA = np.append(AA,npA)
-        BB = np.append(BB,npB)
 
         #Done simulation round
 
 
     #------Calculation of average simulation line------
+    TTN = np.mean(TT)
+    print TTN
+    plt.plot(np.linspace(0,300, num = 300), np.ones(300)*TTN, c = "fuchsia",linewidth = 3)
     primerA = primerA/float(rounds+1)
     primerB = primerB/float(rounds+1)
     meanA = primerA
     meanB = primerB
 
+    """
     #----Fit----
     #Limits for performing the fit
     #Top cut is LENF
     #print "Fitcut: " + str(LENF)
-    #Initial limit is set so that 1 generation is allowed for
+    #Initial limit is set so that 1 generation is allowed
+    # (mainly done for competitions with equal k)
     # the system to globally stabilize
-    cutIN = int((inA+inB)/2.0)
+    cutIN = (inA)
+    print cutIN,LENF
 
     #Fit is done in the average simulation line
     #Array with delimitation that it is important for the fit
@@ -428,7 +444,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     text_file = open("Results/Log_"+str(h)+".txt", "a+")
     n = text_file.write("Fit Params B: "+str(mBB)+", "+str(covB)+"\n")
     text_file.close()
-    #print mBB, covB
 
 
     #----------COST_CALCULATION---------
@@ -446,14 +461,19 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #-----------------GRAPHS---------------------
     #Graph of average simulation line and corresponding fit
-
+    """
     #Condition to graph only 1 general simulation
     if (rep == cc) == True:
         #Labels of the simulation
         # type A = blue   type B = green
+        """
         plt.plot(0,0, c = "b", label = "$K_{A}$ = " + str(kA))
         plt.plot(0,0, c = "g", label = "$K_{B}$ = " + str(kB))
+        """
+        plt.plot(0,0, c="darkorange",label="Total N" )
 
+
+        """
         #----Plot average simulation line---
         plt.plot(np.linspace(0,len(meanA), num = len(meanA)), meanA, c = "deepskyblue", label="Avg $K_{A}$", linewidth = 3)
         plt.plot(np.linspace(0,len(meanB), num = len(meanB)), meanB, c = "lime", label="Avg $K_{B}$", linewidth = 3)
@@ -473,25 +493,24 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         plt.plot(0,0, c = "white", label = "$u_{B}$ = " + str(round(mB,5)))
         #plt.plot(0,0, c = "k", label = "Rounds = "+str(rounds+1))
         #plt.plot(0,0, c = "k", label = "Win " + str(kA) + " = " + str(GwinA) + "   Win " + str(kB) + " = " + str(GwinB))
-
+        """
         #Upper limit should match with Go LEN
-        #General simulation
+        #No se muestra parte de estabilizacion
         plt.xlim((0,400))
-        plt.title("General simulation $K_{A}$ = "+str(kA)+" vs $K_{B}$ = "+str(kB)+" ($h$="+str(h)+")")
+        plt.title("Total Amount plasmids $K_{A}$ = "+str(kA)+" vs $K_{B}$ = "+str(kB)+" ($h$="+str(h)+")", fontsize="small")
         plt.xlabel("Events")
-        plt.ylabel("Normalized amount of plasmids ($\eta$)")
+        plt.ylabel("Total amount of plasmids ($N$)")
         plt.legend(loc = 4, fontsize = "x-small")
-        plt.savefig("SimulationGraphs/Simu_h"+str(h)+"/Graph_" + str(kA) + "_" + str(kB) + "_" + str(int(h)) + ".png")
+        plt.savefig("Total/Total_h"+str(h)+"/Total_" + str(kA) + "_" + str(kB) + "_" + str(int(h)) + ".png")
         plt.clf()
 
+    """
     #Return
     #FA: the calculated cost of type A
     #covA: variance of the slope fit parameter of type A
     return FA, covA
+    """
 
-
-#Start measuring simulation time
-t0 = time.time()
 
 #Generates repetitions of the whole simulation to find an average of the Cost
 # for the same general simulation. It also gives the average of the Variance
@@ -511,7 +530,7 @@ def full(h,kA,kB,inI,rep):
      lva = np.array([])
 
      #Print in Log txt ***
-     text_file = open("Results/Log_"+str(h)+".txt", "a+")
+     text_file = open("Total/Log_"+str(h)+".txt", "a+")
      n = text_file.write("Competition: (kA,kB) "+str(kA)+", "+str(kB)+"\n")
      text_file.close()
      #print kA,kB
@@ -526,6 +545,8 @@ def full(h,kA,kB,inI,rep):
      # results
      for i in range(rep):
         cc += 1
+        repetitionHist(rounds,rep,cc,inI,inI,h,kA,kB)
+        """
         #Perform the general simulation rep times
         FA, va = repetitionHist(rounds,rep,cc,inI,inI,h,kA,kB)
         lFA = np.append(lFA,FA)
@@ -539,7 +560,7 @@ def full(h,kA,kB,inI,rep):
      #Returns the average of cost and variance of the fit slope
      # for type A
      return avgFA, avgva
-
+     """
 
 #----------------COST_CONTOUR_FIGURE----------------
 
@@ -561,7 +582,7 @@ def contourG(start,stop,hop,h,rep):
     KKB = np.linspace(start,stop,hop)
 
     #Print in Log txt ***
-    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    text_file = open("Total/Log_"+str(h)+".txt", "a+")
     n = text_file.write("RANGE OF CALCULATION: "+str(KKA)+"\n")
     text_file.close()
 
@@ -575,7 +596,7 @@ def contourG(start,stop,hop,h,rep):
     Fi = np.ones((len(KKA),len(KKB)))
 
     #Print in Log txt ***
-    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    text_file = open("Total/Log_"+str(h)+".txt", "a+")
     n = text_file.write("LEN OF RANGE: (KKA,KKB) "+str(len(KKA))+","+str(len(KKB))+"\n \n")
     text_file.close()
     #print "LEN OF RANGE: "
@@ -599,7 +620,7 @@ def contourG(start,stop,hop,h,rep):
         Stable1 = Sta[inKA]
 
         #Print in Log txt ***
-        text_file = open("Results/Log_"+str(h)+".txt", "a+")
+        text_file = open("Total/Log_"+str(h)+".txt", "a+")
         n = text_file.write("STABLE1: "+ str(Stable1)+"   i = "+str(i)+"\n")
         text_file.close()
 
@@ -615,7 +636,7 @@ def contourG(start,stop,hop,h,rep):
             Stable2 = Sta[inKB]
 
             #Print in Log txt ***
-            text_file = open("Results/Log_"+str(h)+".txt", "a+")
+            text_file = open("Total/Log_"+str(h)+".txt", "a+")
             n = text_file.write("Stable2: "+ str(Stable2)+"   j = "+str(j)+"\n")
             text_file.close()
 
@@ -628,68 +649,43 @@ def contourG(start,stop,hop,h,rep):
             inI = int(AvgStable/2.0)
 
             #Print in Log txt ***
-            text_file = open("Results/Log_"+str(h)+".txt", "a+")
+            text_file = open("Total/Log_"+str(h)+".txt", "a+")
             n = text_file.write("Average Stable: "+ str(AvgStable)+"   InI: "+str(inI)+"\n")
             text_file.close()
 
             #print "Average Stable: " + str(AvgStable)
             #print "InI: " + str(inI)
 
+            full(h,i,j,inI,rep)
+
+            """
             #Assigns calculated cost and variance
             #Check comments for full - to only calculate cost use full
             Fi[xF,yF], vi[xF,yF] = full(h,i,j,inI,rep)
 
             #Print in Log txt ***
-            text_file = open("Results/Log_"+str(h)+".txt", "a+")
+            text_file = open("Total/Log_"+str(h)+".txt", "a+")
             n = text_file.write("---------//---------\n")
             text_file.close()
+            """
 
             #Counter for location
             yF+=1
 
         #Print in Log txt ***
-        text_file = open("Results/Log_"+str(h)+".txt", "a+")
+        text_file = open("Total/Log_"+str(h)+".txt", "a+")
         n = text_file.write("\n")
         text_file.close()
         #Counter for location
         xF+=1
 
-    #txt with the data of the cost and of the variance of slope parameter
-    np.savetxt("Results/DataCost_"+str(h)+".txt", Fi, delimiter=',')
-    np.savetxt("Results/DataVariance_"+str(h)+".txt", vi, delimiter=',')
-
-    #COST_CONTOUR_FIGURE
-    #x,y,z,levels = number of divisions, cmap = color
-    plt.contourf(X, Y, Fi, 16, cmap="RdBu_r")
-    plt.colorbar()
-    plt.xlabel("$K_{A}$")
-    plt.ylabel("$K_{B}$")
-    plt.xticks(KKA)
-    plt.yticks(KKB)
-    plt.title("Cost for plasmids type A ($h$ = "+str(h)+")")
-    plt.savefig("Results/CostA_"+str(h)+".png")
-    plt.clf()
-
-    #Variance contour figure
-    plt.contourf(X, Y, vi, cmap="YlOrRd")
-    plt.colorbar()
-    plt.xlabel("$K_{A}$")
-    plt.ylabel("$K_{B}$")
-    plt.xticks(KKA)
-    plt.yticks(KKB)
-    plt.title("Variance of the slope fit parameter type A ($h$ = "+str(h)+")",fontsize="small")
-    plt.savefig("Results/VarianceA_"+str(h)+".png")
-    plt.clf()
-
     #Time of all the total simulation
     tsim = round(time.time()-t0,3)
 
     #Print in Log txt ***
-    text_file = open("Results/Log_"+str(h)+".txt", "a+")
+    text_file = open("Total/Log_"+str(h)+".txt", "a+")
     n = text_file.write("Total Simu Time "+ str(tsim))
     text_file.close()
 
-    #print tsim
-
 #contourG(start,stop,hop,h,rep)
-contourG(1,9,5,2,3)
+contourG(15,21,2,4,1)

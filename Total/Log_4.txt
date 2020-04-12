@@ -1,0 +1,33 @@
+RANGE OF CALCULATION: [ 15.  21.]
+LEN OF RANGE: (KKA,KKB) 2,2
+ 
+STABLE1: [ 47.]   i = 15.0
+Stable2: [ 47.]   j = 15.0
+Average Stable: [ 47.]   InI: 23
+Competition: (kA,kB) 15.0, 15.0
+RANGE OF CALCULATION: [ 15.  21.]
+LEN OF RANGE: (KKA,KKB) 2,2
+ 
+STABLE1: [ 47.]   i = 15.0
+Stable2: [ 47.]   j = 15.0
+Average Stable: [ 47.]   InI: 23
+Competition: (kA,kB) 15.0, 15.0
+RANGE OF CALCULATION: [ 15.  21.]
+LEN OF RANGE: (KKA,KKB) 2,2
+ 
+STABLE1: [ 47.]   i = 15.0
+Stable2: [ 47.]   j = 15.0
+Average Stable: [ 47.]   InI: 23
+Competition: (kA,kB) 15.0, 15.0
+Stable2: [ 66.]   j = 21.0
+Average Stable: [ 56.5]   InI: 28
+Competition: (kA,kB) 15.0, 21.0
+
+STABLE1: [ 66.]   i = 21.0
+Stable2: [ 47.]   j = 15.0
+Average Stable: [ 56.5]   InI: 28
+Competition: (kA,kB) 21.0, 15.0
+Stable2: [ 66.]   j = 21.0
+Average Stable: [ 66.]   InI: 33
+Competition: (kA,kB) 21.0, 21.0
+
