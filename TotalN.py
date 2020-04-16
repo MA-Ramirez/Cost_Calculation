@@ -53,6 +53,11 @@ def Birth(h,kA,kB,A,B):
     #Threshold B
     TB = (probB*B) / tot
 
+    text_file = open("Total/Log_"+str(h)+".txt", "a+")
+    n = text_file.write(str(probA)+" "+str(A)+" "+str(probB)+" "+str(B)+" "+str(tot)+"\n" )
+    n = text_file.write("TT "+str(TA)+" "+str(TB)+"\n")
+    text_file.close()
+
     #Threshold none
     #TN = 1.0 - TA - TB
 
@@ -62,12 +67,23 @@ def Birth(h,kA,kB,A,B):
     #Birth A
     if Q <= TA:
         A+= 1
+        text_file = open("Total/Log_"+str(h)+".txt", "a+")
+        n = text_file.write("A ")
+        text_file.close()
     #Birth B
-    elif Q > TA and Q <= TA + TB:
+    if Q <= TB:
         B += 1
+        text_file = open("Total/Log_"+str(h)+".txt", "a+")
+        n = text_file.write("B ")
+        text_file.close()
+    else:
+        text_file = open("Total/Log_"+str(h)+".txt", "a+")
+        n = text_file.write("N ")
+        text_file.close()
     #"else" ninguno
 
-    return A,B,probA,probB
+    #return A,B,probA,probB
+    return A,B,TA,TB
 
 #Death
 #Generates a death decision A,B
@@ -159,6 +175,9 @@ def Go(inA, inB, h, kA, kB):
         if C1 == True and C2 == True and S ==0:
             #Run whole process
             #Primer Birth
+            text_file = open("Total/Log_"+str(h)+".txt", "a+")
+            n = text_file.write("Birth 3 \n")
+            text_file.close()
             A,B,probA,probB = Birth(h,kA,kB,inA,inB)
             inA = A
             inB = B
@@ -175,8 +194,12 @@ def Go(inA, inB, h, kA, kB):
 
             #There will be reproduction while reproduction probability
             # is above 2%
-            while (probA >= 0.02 or probB >= 0.02) and S == 0:
+            while (probA >= 0.02 and probB >= 0.02) and S == 0:
 
+
+                text_file = open("Total/Log_"+str(h)+".txt", "a+")
+                n = text_file.write("Birth \n")
+                text_file.close()
                 A,B,probA,probB = Birth(h,kA,kB,inA,inB)
                 inA = A
                 inB = B
@@ -213,6 +236,10 @@ def Go(inA, inB, h, kA, kB):
 
             #Random death happens until half of fixed is reached
             while (inA+inB > (fixed/2.0)) and S == 0:
+
+                text_file = open("Total/Log_"+str(h)+".txt", "a+")
+                n = text_file.write("Death \n")
+                text_file.close()
 
                 A,B = Death(inA,inB)
                 inA = A
@@ -326,7 +353,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     TotalNA = pA
     TotalNB = pB
     TOTALG = pA+pB
-    plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), TOTALG, c = "darkorange")
+    plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), TOTALG, c  = "darkorange")
     #plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), np.ones(len(TOTALG))*np.mean(TOTALG), c = "fuchsia",linewidth = 3)
     TT = np.mean(TOTALG)
 
@@ -375,6 +402,10 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         sizea = npA.size
 
         #Done simulation round
+    TotalNA = pA
+    TotalNB = pB
+    TOTALG = pA+pB
+    plt.plot(np.linspace(0,len(TOTALG), num = len(TOTALG)), TOTALG, c = "r", linewidth = 4)
 
 
     #------Calculation of average simulation line------
@@ -536,7 +567,7 @@ def full(h,kA,kB,inI,rep):
      #print kA,kB
 
      #General rounds are rounds +1
-     rounds = 599
+     rounds = 0
 
      #Marker that helps to graph only one general simulation (optimization)
      cc = 0
@@ -646,7 +677,7 @@ def contourG(start,stop,hop,h,rep):
             #Average of stabilization
             AvgStable = (Stable1 + Stable2)/2.0
             #Turns it into int, no decimal amount of plasmids
-            inI = int(AvgStable/2.0)
+            inI = int(AvgStable/4.0)
 
             #Print in Log txt ***
             text_file = open("Total/Log_"+str(h)+".txt", "a+")
@@ -688,4 +719,4 @@ def contourG(start,stop,hop,h,rep):
     text_file.close()
 
 #contourG(start,stop,hop,h,rep)
-contourG(15,21,2,4,1)
+contourG(14,18,2,3,1)
