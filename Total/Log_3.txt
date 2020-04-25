@@ -121,4 +121,40 @@ Stable2: [ 105.]   j = 22.0
 Average Stable: [ 105.]   InI: 52
 Competition: (kA,kB) 22.0, 22.0
 
-Total Simu Time 244.459
+Total Simu Time 244.459RANGE OF CALCULATION: [ 1.  2.  3.]
+LEN OF RANGE: (KKA,KKB) 3,3
+ 
+STABLE1: [ 4.]   i = 1.0
+Stable2: [ 4.]   j = 1.0
+Average Stable: [ 4.]   InI: 2
+Competition: (kA,kB) 1.0, 1.0
+Stable2: [ 9.]   j = 2.0
+Average Stable: [ 6.5]   InI: 3
+Competition: (kA,kB) 1.0, 2.0
+Stable2: [ 14.]   j = 3.0
+Average Stable: [ 9.]   InI: 4
+Competition: (kA,kB) 1.0, 3.0
+
+STABLE1: [ 9.]   i = 2.0
+Stable2: [ 4.]   j = 1.0
+Average Stable: [ 6.5]   InI: 3
+Competition: (kA,kB) 2.0, 1.0
+Stable2: [ 9.]   j = 2.0
+Average Stable: [ 9.]   InI: 4
+Competition: (kA,kB) 2.0, 2.0
+Stable2: [ 14.]   j = 3.0
+Average Stable: [ 11.5]   InI: 5
+Competition: (kA,kB) 2.0, 3.0
+
+STABLE1: [ 14.]   i = 3.0
+Stable2: [ 4.]   j = 1.0
+Average Stable: [ 9.]   InI: 4
+Competition: (kA,kB) 3.0, 1.0
+Stable2: [ 9.]   j = 2.0
+Average Stable: [ 11.5]   InI: 5
+Competition: (kA,kB) 3.0, 2.0
+Stable2: [ 14.]   j = 3.0
+Average Stable: [ 14.]   InI: 7
+Competition: (kA,kB) 3.0, 3.0
+
+Total Simu Time 48.536

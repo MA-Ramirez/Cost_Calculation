@@ -750,4 +750,4 @@ def contourG(start,stop,hop,h,rep):
     text_file.close()
 
 #contourG(start,stop,hop,h,rep)
-contourG(3,33,6,4,1)
+contourG(1,3,3,3,1)

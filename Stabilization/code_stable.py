@@ -41,7 +41,7 @@ def Birth(h,kA,A):
     Q = np.random.random()
 
     #Birth A
-    if Q <= TA:
+    if Q <= probA:
         A+= 1
 
     #print TA, Q, A
@@ -86,8 +86,8 @@ def Go(inA, h, kA):
 
         #Primer Birth
         A,probA = Birth(h,kA,inA)
-        inA = A
-        pA = np.append(pA,inA)
+        #inA = A
+        #pA = np.append(pA,inA)
 
         #While the probability of reproduction is above 0.5% it is performed:
         while probA >= 0.005:
@@ -160,5 +160,9 @@ def exe(inA, h, kA):
 #for i in range(10,31):
 #    exe(1,3,i)
 
-exe(1,2,3)
-exe(1,2,7)
+#exe(inA, h, kA)
+exe(1,4,1)
+exe(1,4,2)
+exe(1,4,3)
+exe(1,4,4)
+exe(1,4,5)

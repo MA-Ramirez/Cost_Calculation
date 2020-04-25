@@ -61,7 +61,7 @@ def Birth(h,kA,kB,A,B):
     if Q <= TA:
         A+= 1
     #Birth B
-    elif Q > TA and Q <= TA + TB:
+    if Q <= TB:
         B += 1
     #"else" ninguno
 
@@ -156,24 +156,24 @@ def Go(inA, inB, h, kA, kB):
         #Code will run as long as no plasmid takes completely over the population
         if C1 == True and C2 == True and S ==0:
             #Run whole process
-            #Primer Birth
+            #Primer for condition below
             A,B,probA,probB = Birth(h,kA,kB,inA,inB)
-            inA = A
-            inB = B
-            pA = np.append(pA,inA)
-            pB = np.append(pB,inB)
+            #inA = A
+            #inB = B
+            #pA = np.append(pA,inA)
+            #pB = np.append(pB,inB)
 
             #Normalization
-            cinA, cinB = nor(inA,inB)
-            npA = np.append(npA,cinA)
-            npB = np.append(npB,cinB)
+            #cinA, cinB = nor(inA,inB)
+            #npA = np.append(npA,cinA)
+            #npB = np.append(npB,cinB)
 
 
             #--------------BIRTH----------------
 
             #There will be reproduction while reproduction probability
             # is above 2%
-            while (probA >= 0.02 or probB >= 0.02) and S == 0:
+            while (probA >= 0.02 and probB >= 0.02) and S == 0:
 
                 A,B,probA,probB = Birth(h,kA,kB,inA,inB)
                 inA = A
@@ -199,7 +199,7 @@ def Go(inA, inB, h, kA, kB):
                 if cinA <= tDw or cinB <= tDw:
                     C2 = False
                 #If markers to break loop have been modified, break process
-                if (C1 != True and C2 != True):
+                if (C1 != True or C2 != True):
                     S = 1
 
             #TOTAL amount of plasmids after REPRODUCTIVE PHASE
@@ -237,7 +237,7 @@ def Go(inA, inB, h, kA, kB):
                     C2 = False
 
                 #If markers to break loop have been modified, break process
-                if (C1 == False and C2 == False):
+                if (C1 == False or C2 == False):
                     S = 1
 
                 #If one plasmid has already took completely over the population
@@ -253,9 +253,11 @@ def Go(inA, inB, h, kA, kB):
         #Limits avoid the code to run for amounts where the reproduction
         #  probability is determined by 1/N (irrelevant for this project)
         #Upper normalized limit of plasmids
-        Unl = 0.75
+        #Unl = 0.75
+        Unl = tUP
         #Lower normalized limit of plasmids
-        Lnl = 0.25
+        #Lnl = 0.25
+        Lnl = tDw
 
         #Markers and conditions to break the loop
         if C1 == False and C2 == False:
@@ -315,6 +317,8 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     BB = np.array([])
 
     #Top limit for the average and the corresponding fit
+    #LENF = 250
+    LENFL = int((inA+inB))+10
     LENF = 250
 
     #Return of Go function (check Go comments)
@@ -379,12 +383,14 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #print "Fitcut: " + str(LENF)
     #Initial limit is set so that 1 generation is allowed for
     # the system to globally stabilize
-    cutIN = int((inA+inB)/2.0)
+    #cutIN = int((inA+inB)/2.0)
+    cutIN = int((inA+inB))
+    #cutIN = 50
 
     #Fit is done in the average simulation line
     #Array with delimitation that it is important for the fit
-    LA = meanA[(cutIN):(LENF)]
-    LB = meanB[(cutIN):(LENF)]
+    LA = meanA[(cutIN):(LENFL)]
+    LB = meanB[(cutIN):(LENFL)]
 
     #Proposed linear fit function
     #Param: m slope
@@ -398,7 +404,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Returns the parameters of the fit
 
     #LA y LB are of the same length
-    mAA, covAA = curve_fit(fun, np.linspace(cutIN, LENF, num = len(LA)), LA)
+    mAA, covAA = curve_fit(fun, np.linspace(cutIN, LENFL, num = len(LA)), LA)
 
     #The slope is the variable of interest
     #Slope parameter
@@ -416,7 +422,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #Linear fit type B
     #Same but for type B
-    mBB, covBB = curve_fit(fun, np.linspace(cutIN, LENF, num = len(LA)), LB)
+    mBB, covBB = curve_fit(fun, np.linspace(cutIN, LENFL, num = len(LA)), LB)
     #Slope parameter
     mB = mBB[0]
     #y-intercept parameter
@@ -432,10 +438,22 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
 
     #----------COST_CALCULATION---------
+    #Data of average of total plasmids is calculated in another script
+    # this data is recorded on csv files for optimization
+    NKb = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=1)
+    Navg = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=2)
+
+    #Average of total plasmids for this competition
+    inNKb = np.where(NKb==kB)[0]
+    NNavg = Navg[inNKb]
+
+
     #Cost of type A
-    FA = 2*mA*(inA+inB)
+    #FA = 2*mA*(NNavg)
+    FA = 2*mA
     #Cost of type B
-    FB = 2*mB*(inA+inB)
+    #FB = 2*mB*(NNavg)
+    FB = 2*mB
 
     #Print in Log txt ***
     text_file = open("Results/Log_"+str(h)+".txt", "a+")
@@ -460,8 +478,8 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
         #----Plot fit----
         #x axis info for plotting fit
-        xxxa = np.linspace(cutIN, LENF, num = len(LA))
-        xxxb = np.linspace(cutIN, LENF, num = len(LB))
+        xxxa = np.linspace(cutIN, LENFL, num = len(LA))
+        xxxb = np.linspace(cutIN, LENFL, num = len(LB))
 
         #Plot fit of average line simulation
         plt.plot(xxxa, fun(xxxa, mA*np.ones(len(LA)) , cA*np.ones(len(LA))) , '--',c = "deeppink", label="Fit $K_{A}$", linewidth = 4)
@@ -692,4 +710,4 @@ def contourG(start,stop,hop,h,rep):
     #print tsim
 
 #contourG(start,stop,hop,h,rep)
-contourG(1,9,5,2,3)
+contourG(2,22,6,3,3)
