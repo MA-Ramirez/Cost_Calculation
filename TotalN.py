@@ -64,10 +64,11 @@ def Birth(h,kA,kB,A,B):
     #TN = 1.0 - TA - TB
 
     #Random number between 0-1
-    Q = np.random.random()
+    Q1 = np.random.random()
+    Q2 = np.random.random()
 
     #Birth A
-    if Q <= probA:
+    if Q1 <= probA:
         A+= 1
         """
         text_file = open("Total/Log_"+str(h)+".txt", "a+")
@@ -75,7 +76,7 @@ def Birth(h,kA,kB,A,B):
         text_file.close()
         """
     #Birth B
-    if Q <= probB:
+    if Q2 <= probB:
         B += 1
         """
         text_file = open("Total/Log_"+str(h)+".txt", "a+")
@@ -156,8 +157,13 @@ def Go(inA, inB, h, kA, kB):
     #Upper and lower cuts for the normalized amount of plasmids
     #  This avoids the code to run for amounts where the reproduction
     #  probability is determined by 1/N (irrelevant for this project)
-    tUP = 1 - (1/float(inA+inB))
-    tDw = (1/float(inA+inB))
+    #tUP = 1 - (1/float(inA+inB))
+    tUP = 0.75
+    tDw = 0.25
+    #tDw = (1/float(inA+inB))
+    #Lnl = 0.25
+    #print tUP
+    #print tDw
 
     #Limit of number of events for the simulation
     # this limit is called LEN
@@ -167,6 +173,9 @@ def Go(inA, inB, h, kA, kB):
     C1 = True
     C2 = True
 
+    #print "Out"
+    #print S
+    #print len(npA)
     #Code will run while the length of the array is lower than the LEN limit
     while len(npA) < LEN and S == 0:
         #Condition 1 (Upper cuts both types)
@@ -204,7 +213,6 @@ def Go(inA, inB, h, kA, kB):
             #There will be reproduction while reproduction probability
             # is above 2%
             while (probA >= 0.02 and probB >= 0.02) and S == 0:
-
                 """
                 text_file = open("Total/Log_"+str(h)+".txt", "a+")
                 n = text_file.write("Birth \n")

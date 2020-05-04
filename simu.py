@@ -55,13 +55,14 @@ def Birth(h,kA,kB,A,B):
     #TN = 1.0 - TA - TB
 
     #Random number between 0-1
-    Q = np.random.random()
+    Q1 = np.random.random()
+    Q2 = np.random.random()
 
     #Birth A
-    if Q <= TA:
+    if Q1 <= TA:
         A+= 1
     #Birth B
-    if Q <= TB:
+    if Q2 <= TB:
         B += 1
     #"else" ninguno
 

@@ -90,7 +90,8 @@ def Go(inA, h, kA):
         #pA = np.append(pA,inA)
 
         #While the probability of reproduction is above 0.5% it is performed:
-        while probA >= 0.005:
+        #while probA >= 0.005:
+        while probA >= 0.02:
 
             A,probA = Birth(h,kA,inA)
             inA = A
@@ -161,8 +162,6 @@ def exe(inA, h, kA):
 #    exe(1,3,i)
 
 #exe(inA, h, kA)
-exe(1,4,1)
-exe(1,4,2)
-exe(1,4,3)
-exe(1,4,4)
-exe(1,4,5)
+exe(1,3,1)
+exe(1,3,2)
+exe(1,3,3)
