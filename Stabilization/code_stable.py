@@ -131,11 +131,10 @@ def exe(inA, h, kA):
     tsim = round(time.time()-t0,3)
 
     #average stabilization number
-    avgpA = int(np.mean(pA))
+    avgpA = round(np.mean(pA))
 
     print h,kA,avgpA
 
-    """
     #First column K, second column average stabilization number
     text_file = open(str(h)+"Stable.csv", "a+")
     n = text_file.write(str(kA)+","+str(avgpA)+"\n")
@@ -152,16 +151,13 @@ def exe(inA, h, kA):
     plt.ylabel("Number of plasmids")
     plt.savefig("h"+str(h)+"/graph_" + str(kA)+ "_" + str(h) + ".png")
     plt.clf()
-    """
+
+#np.linspace(start,stop,hop)
+SS = np.linspace(2,2,1)
+print SS
 
 #Execute code for same h for a given range of k
-#for i in range(29,31):
-    #exe(1,2,i)
-
-#for i in range(10,31):
-#    exe(1,3,i)
-
-#exe(inA, h, kA)
-exe(1,3,1)
-exe(1,3,2)
-exe(1,3,3)
+for i in SS:
+    #Always start with 1 plasmids
+    #exe(inA,h,kA)
+    exe(1,3,i)
