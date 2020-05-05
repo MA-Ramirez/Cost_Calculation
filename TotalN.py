@@ -440,7 +440,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #First column kA, second column kB, average of Global Average
     text_file = open("Total/"+str(h)+"_"+str(kA)+"Total.csv", "a+")
-    n = text_file.write(str(kA)+","+str(kB)+","+str(TTN)+"\n")
+    n = text_file.write(str(kA)+","+str(kB)+","+str(TTN)+","+str(int(CCAVG))+"\n")
     text_file.close()
 
 
