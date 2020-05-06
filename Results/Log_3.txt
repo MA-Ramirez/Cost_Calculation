@@ -1,199 +1,173 @@
 RANGE OF CALCULATION: [ 1.  2.  3.]
 LEN OF RANGE: (KKA,KKB) 3,3
- 
-STABLE1: [ 4.]   i = 1.0
-Stable2: [ 4.]   j = 1.0
-Average Stable: [ 4.]   InI: 2
+
+STABLE1: [ 3.]   i = 1.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 3.]   InI: 1
 Competition: (kA,kB) 1.0, 1.0
-Fit Params A: [-0.00144545  0.51902374], 7.30015669195e-08
-Fit Params B: [ 0.00144545  0.48097626], 7.30015666242e-08
-Fitness/Cost A: -0.00289090900932
----------//---------
-Stable2: [ 9.]   j = 2.0
-Average Stable: [ 6.5]   InI: 3
-Competition: (kA,kB) 1.0, 2.0
-Fit Params A: [-0.0052853   0.51872965], 9.78715884539e-08
-Fit Params B: [ 0.0052853   0.48127035], 9.78715629565e-08
-Fitness/Cost A: -0.010570606017
----------//---------
-Stable2: [ 14.]   j = 3.0
-Average Stable: [ 9.]   InI: 4
-Competition: (kA,kB) 1.0, 3.0
-Fit Params A: [-0.01305508  0.56485818], 1.74786725946e-06
-Fit Params B: [ 0.01305508  0.43514182], 1.74786724378e-06
-Fitness/Cost A: -0.026110151454
----------//---------
-
-STABLE1: [ 9.]   i = 2.0
-Stable2: [ 4.]   j = 1.0
-Average Stable: [ 6.5]   InI: 3
-Competition: (kA,kB) 2.0, 1.0
-Fit Params A: [ 0.00566697  0.48694202], 4.69261252604e-08
-Fit Params B: [-0.00566697  0.51305798], 4.69261320865e-08
-Fitness/Cost A: 0.0113339393231
----------//---------
-Stable2: [ 9.]   j = 2.0
-Average Stable: [ 9.]   InI: 4
-Competition: (kA,kB) 2.0, 2.0
-Fit Params A: [  5.16236282e-05   5.17942927e-01], 1.86674317003e-09
-Fit Params B: [ -5.16239207e-05   4.82057076e-01], 1.86670625604e-09
-Fitness/Cost A: 0.000103247256322
----------//---------
-Stable2: [ 14.]   j = 3.0
-Average Stable: [ 11.5]   InI: 5
-Competition: (kA,kB) 2.0, 3.0
-Fit Params A: [-0.00321699  0.51464653], 7.70991554486e-09
-Fit Params B: [ 0.00321699  0.48535347], 7.70991397364e-09
-Fitness/Cost A: -0.00643397548076
----------//---------
-
-STABLE1: [ 14.]   i = 3.0
-Stable2: [ 4.]   j = 1.0
-Average Stable: [ 9.]   InI: 4
-Competition: (kA,kB) 3.0, 1.0
-Fit Params A: [ 0.01014053  0.44685884], 1.75254154523e-06
-Fit Params B: [-0.01014053  0.55314116], 1.7525414981e-06
-Fitness/Cost A: 0.0202810606002
----------//---------
-Stable2: [ 9.]   j = 2.0
-Average Stable: [ 11.5]   InI: 5
-Competition: (kA,kB) 3.0, 2.0
-Fit Params A: [ 0.00326574  0.48401267], 1.24232827272e-08
-Fit Params B: [-0.00326574  0.51598733], 1.24232847898e-08
-Fitness/Cost A: 0.00653148623447
----------//---------
-Stable2: [ 14.]   j = 3.0
-Average Stable: [ 14.]   InI: 7
-Competition: (kA,kB) 3.0, 3.0
-Fit Params A: [  1.45420500e-04   4.93706734e-01], 8.37579646126e-10
-Fit Params B: [ -1.45420529e-04   5.06293267e-01], 8.37574234979e-10
-Fitness/Cost A: 0.000290840999974
----------//---------
-
-Total Simu Time 152.563RANGE OF CALCULATION: [ 1.  2.  3.]
+RANGE OF CALCULATION: [ 1.  2.  3.]
 LEN OF RANGE: (KKA,KKB) 3,3
  
-STABLE1: [ 4.]   i = 1.0
-Stable2: [ 4.]   j = 1.0
-Average Stable: [ 4.]   InI: 2
+STABLE1: [ 3.]   i = 1.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 3.]   InI: 1
 Competition: (kA,kB) 1.0, 1.0
-Fit Params A: [-0.00096485  0.50539283], 2.4546295775e-08
-Fit Params B: [ 0.00096485  0.49460717], 2.45462969315e-08
-Fitness/Cost A: -0.00192969685863
-Fit Params A: [  1.69848654e-04   4.95686059e-01], 1.86898844421e-08
-Fit Params B: [ -1.69849056e-04   5.04313943e-01], 1.86899690639e-08
-Fitness/Cost A: 0.0003396973086
-Fit Params A: [ -2.17423844e-04   5.01785856e-01], 2.08639600714e-08
-Fit Params B: [  2.17424215e-04   4.98214142e-01], 2.08640540797e-08
-Fitness/Cost A: -0.000434847688228
+RANGE OF CALCULATION: [ 1.  2.  3.]
+LEN OF RANGE: (KKA,KKB) 3,3
+ 
+STABLE1: [ 3.]   i = 1.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 3.]   InI: 1
+Competition: (kA,kB) 1.0, 1.0
+Fit Params A: [-0.00060636  0.50071515], 2.96752277574e-08
+Fit Params B: [ 0.00060636  0.49928485], 2.96752098944e-08
+Fitness/Cost A: [-0.00351691]
 ---------//---------
-Stable2: [ 9.]   j = 2.0
-Average Stable: [ 6.5]   InI: 3
+Stable2: [ 6.]   j = 2.0
+Average Stable: [ 4.5]   InI: 2
 Competition: (kA,kB) 1.0, 2.0
-Fit Params A: [-0.0050108  0.5173622], 2.13473928962e-07
-Fit Params B: [ 0.0050108  0.4826378], 2.13473929073e-07
-Fitness/Cost A: -0.0100216017483
-Fit Params A: [-0.00561803  0.4999248 ], 3.21128696164e-08
-Fit Params B: [ 0.00561803  0.5000752 ], 3.21128701086e-08
-Fitness/Cost A: -0.0112360606233
-Fit Params A: [-0.00473924  0.51354449], 1.34212908943e-07
-Fit Params B: [ 0.00473924  0.48645551], 1.34212880308e-07
-Fitness/Cost A: -0.00947848480784
+Fit Params A: [-0.00872379  0.50641374], 6.97433544497e-07
+Fit Params B: [ 0.00872379  0.49358626], 6.97433531887e-07
+Fitness/Cost A: [-0.05234273]
 ---------//---------
-Stable2: [ 14.]   j = 3.0
-Average Stable: [ 9.]   InI: 4
+Stable2: [ 9.]   j = 3.0
+Average Stable: [ 6.]   InI: 3
 Competition: (kA,kB) 1.0, 3.0
-Fit Params A: [-0.01352144  0.5746249 ], 1.63440063139e-06
-Fit Params B: [ 0.01352144  0.4253751 ], 1.63440057652e-06
-Fitness/Cost A: -0.0270428789474
-Fit Params A: [-0.01306508  0.57154263], 1.39871749912e-06
-Fit Params B: [ 0.01306508  0.42845737], 1.39871759902e-06
-Fitness/Cost A: -0.0261301514674
-Fit Params A: [-0.01387674  0.5607504 ], 1.12751403263e-06
-Fit Params B: [ 0.01387674  0.4392496 ], 1.12751402654e-06
-Fitness/Cost A: -0.0277534848969
+Fit Params A: [-0.00795212  0.51018919], 1.82229002114e-07
+Fit Params B: [ 0.00795212  0.48981081], 1.82229008671e-07
+Fitness/Cost A: [-0.04930315]
 ---------//---------
 
-STABLE1: [ 9.]   i = 2.0
-Stable2: [ 4.]   j = 1.0
-Average Stable: [ 6.5]   InI: 3
+STABLE1: [ 6.]   i = 2.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 4.5]   InI: 2
 Competition: (kA,kB) 2.0, 1.0
-Fit Params A: [ 0.00485955  0.49574864], 2.03248564105e-07
-Fit Params B: [-0.00485955  0.50425136], 2.03248535837e-07
-Fitness/Cost A: 0.00971909104813
-Fit Params A: [ 0.00544348  0.4847549 ], 3.50106937177e-08
-Fit Params B: [-0.00544348  0.5152451 ], 3.5010699772e-08
-Fitness/Cost A: 0.0108869696344
-Fit Params A: [ 0.00524654  0.48847691], 1.09110313241e-07
-Fit Params B: [-0.00524654  0.51152309], 1.09110323662e-07
-Fitness/Cost A: 0.0104930736596
+Fit Params A: [ 0.00998515  0.50296505], 5.15677003271e-07
+Fit Params B: [-0.00998515  0.49703495], 5.15676986231e-07
+Fitness/Cost A: [ 0.05991091]
 ---------//---------
-Stable2: [ 9.]   j = 2.0
-Average Stable: [ 9.]   InI: 4
+Stable2: [ 6.]   j = 2.0
+Average Stable: [ 6.]   InI: 3
 Competition: (kA,kB) 2.0, 2.0
-Fit Params A: [ -2.87402646e-04   5.09081068e-01], 1.91985134555e-09
-Fit Params B: [  2.87402486e-04   4.90918933e-01], 1.91985735017e-09
-Fitness/Cost A: -0.000574805292045
-Fit Params A: [  1.05486685e-04   4.95692485e-01], 5.54733251953e-09
-Fit Params B: [ -1.05487081e-04   5.04307519e-01], 5.54733867692e-09
-Fitness/Cost A: 0.000210973370226
-Fit Params A: [ -1.02488468e-04   5.10692237e-01], 5.79091293611e-09
-Fit Params B: [  1.02489270e-04   4.89307755e-01], 5.79096837116e-09
-Fitness/Cost A: -0.000204976936477
+Fit Params A: [  8.92964036e-05   4.99530304e-01], 3.27392883041e-09
+Fit Params B: [ -8.92964369e-05   5.00469696e-01], 3.27394803547e-09
+Fitness/Cost A: [ 0.00112513]
 ---------//---------
-Stable2: [ 14.]   j = 3.0
-Average Stable: [ 11.5]   InI: 5
+Stable2: [ 9.]   j = 3.0
+Average Stable: [ 7.5]   InI: 3
 Competition: (kA,kB) 2.0, 3.0
-Fit Params A: [-0.00329977  0.50754541], 1.3434129397e-08
-Fit Params B: [ 0.00329977  0.49245459], 1.34341311542e-08
-Fitness/Cost A: -0.00659954543761
-Fit Params A: [-0.00293372  0.50435313], 1.55330436265e-09
-Fit Params B: [ 0.00293372  0.49564687], 1.55330384765e-09
-Fitness/Cost A: -0.00586743866631
-Fit Params A: [-0.00281894  0.50694736], 8.88749126823e-09
-Fit Params B: [ 0.00281894  0.49305264], 8.88748872088e-09
-Fitness/Cost A: -0.0056378715456
+Fit Params A: [-0.00251269  0.49999912], 7.71306334743e-09
+Fit Params B: [ 0.00251269  0.50000088], 7.71306223949e-09
+Fitness/Cost A: [-0.03216249]
 ---------//---------
 
-STABLE1: [ 14.]   i = 3.0
-Stable2: [ 4.]   j = 1.0
-Average Stable: [ 9.]   InI: 4
+STABLE1: [ 9.]   i = 3.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 6.]   InI: 3
 Competition: (kA,kB) 3.0, 1.0
-Fit Params A: [ 0.0148397   0.42207884], 1.89197909535e-06
-Fit Params B: [-0.0148397   0.57792116], 1.89197913881e-06
-Fitness/Cost A: 0.0296793938518
-Fit Params A: [ 0.01330561  0.43168288], 1.45610776875e-06
-Fit Params B: [-0.01330561  0.56831712], 1.45610774754e-06
-Fitness/Cost A: 0.0266112119785
-Fit Params A: [ 0.01254826  0.43093374], 1.21099552962e-06
-Fit Params B: [-0.01254826  0.56906626], 1.21099540952e-06
-Fitness/Cost A: 0.025096515122
+Fit Params A: [ 0.00709515  0.49902768], 1.77658430995e-07
+Fit Params B: [-0.00709515  0.50097232], 1.7765842998e-07
+Fitness/Cost A: [ 0.04257091]
 ---------//---------
-Stable2: [ 9.]   j = 2.0
-Average Stable: [ 11.5]   InI: 5
+Stable2: [ 6.]   j = 2.0
+Average Stable: [ 7.5]   InI: 3
 Competition: (kA,kB) 3.0, 2.0
-Fit Params A: [ 0.00353608  0.47550687], 2.37519461903e-08
-Fit Params B: [-0.00353608  0.52449313], 2.37519524364e-08
-Fitness/Cost A: 0.00707215726044
-Fit Params A: [ 0.00323102  0.47839793], 2.16702048385e-08
-Fit Params B: [-0.00323102  0.52160207], 2.16702058157e-08
-Fitness/Cost A: 0.0064620418101
-Fit Params A: [ 0.00370882  0.48273491], 3.06557352373e-09
-Fit Params B: [-0.00370882  0.51726509], 3.06557446719e-09
-Fitness/Cost A: 0.00741764790067
+Fit Params A: [ 0.00218845  0.49974426], 2.273124584e-09
+Fit Params B: [-0.00218845  0.50025574], 2.27312365033e-09
+Fitness/Cost A: [ 0.02844983]
 ---------//---------
-Stable2: [ 14.]   j = 3.0
-Average Stable: [ 14.]   InI: 7
+Stable2: [ 9.]   j = 3.0
+Average Stable: [ 9.]   InI: 4
 Competition: (kA,kB) 3.0, 3.0
-Fit Params A: [  3.72847653e-05   4.94756972e-01], 2.22300105185e-10
-Fit Params B: [ -3.72852964e-05   5.05243034e-01], 2.22295957428e-10
-Fitness/Cost A: 7.45695306156e-05
-Fit Params A: [  1.03625187e-04   4.97593234e-01], 9.85374139265e-10
-Fit Params B: [ -1.03625213e-04   5.02406766e-01], 9.85384133883e-10
-Fitness/Cost A: 0.00020725037395
-Fit Params A: [ -2.52264809e-05   5.02423719e-01], 4.47846469394e-10
-Fit Params B: [  2.52257542e-05   4.97576289e-01], 4.47861705967e-10
-Fitness/Cost A: -5.04529617242e-05
+Fit Params A: [  1.43875642e-04   4.99386346e-01], 2.29270172938e-09
+Fit Params B: [ -1.43875341e-04   5.00613653e-01], 2.2926971044e-09
+Fitness/Cost A: [ 0.00253221]
 ---------//---------
 
-Total Simu Time 332.436
+Total Simu Time 129.263RANGE OF CALCULATION: [ 1.  2.  3.]
+LEN OF RANGE: (KKA,KKB) 3,3
+ 
+STABLE1: [ 3.]   i = 1.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 3.]   InI: 1
+Competition: (kA,kB) 1.0, 1.0
+Fit Params A: [ -4.05302935e-04   4.97290404e-01], 4.60594352075e-08
+Fit Params B: [  4.05302889e-04   5.02709597e-01], 4.60594175214e-08
+Fitness/Cost A: [-0.00235076]
+---------//---------
+Stable2: [ 6.]   j = 2.0
+Average Stable: [ 4.5]   InI: 2
+Competition: (kA,kB) 1.0, 2.0
+RANGE OF CALCULATION: [ 1.  2.  3.]
+LEN OF RANGE: (KKA,KKB) 3,3
+ 
+STABLE1: [ 3.]   i = 1.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 3.]   InI: 1
+Competition: (kA,kB) 1.0, 1.0
+Fit Params A: [  3.06060563e-04   5.00803031e-01], 8.26244558349e-09
+Fit Params B: [ -3.06060430e-04   4.99196969e-01], 8.26244764759e-09
+Fitness/Cost A: [ 0.00183636]
+---------//---------
+Stable2: [ 6.]   j = 2.0
+Average Stable: [ 4.5]   InI: 2
+Competition: (kA,kB) 1.0, 2.0
+Fit Params A: [-0.0065647   0.49753702], 9.19371147328e-08
+Fit Params B: [ 0.0065647   0.50246298], 9.1937104924e-08
+Fitness/Cost A: [-0.03938818]
+---------//---------
+Stable2: [ 9.]   j = 3.0
+Average Stable: [ 6.]   InI: 3
+Competition: (kA,kB) 1.0, 3.0
+Fit Params A: [-0.00728591  0.50824005], 1.44426033964e-07
+Fit Params B: [ 0.00728591  0.49175995], 1.44426028952e-07
+Fitness/Cost A: [-0.04662982]
+---------//---------
+
+STABLE1: [ 6.]   i = 2.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 4.5]   InI: 2
+Competition: (kA,kB) 2.0, 1.0
+Fit Params A: [ 0.0094647   0.49118879], 3.93517411611e-07
+Fit Params B: [-0.0094647   0.50881121], 3.93517405752e-07
+Fitness/Cost A: [ 0.05678818]
+---------//---------
+Stable2: [ 6.]   j = 2.0
+Average Stable: [ 6.]   InI: 3
+Competition: (kA,kB) 2.0, 2.0
+Fit Params A: [  4.26404695e-05   4.99365766e-01], 3.19441114446e-09
+Fit Params B: [ -4.26400077e-05   5.00634232e-01], 3.19435909196e-09
+Fitness/Cost A: [ 0.0005458]
+---------//---------
+Stable2: [ 9.]   j = 3.0
+Average Stable: [ 7.5]   InI: 3
+Competition: (kA,kB) 2.0, 3.0
+Fit Params A: [-0.0020625   0.49958931], 3.17693151775e-09
+Fit Params B: [ 0.0020625   0.50041069], 3.17693277714e-09
+Fitness/Cost A: [-0.02598755]
+---------//---------
+
+STABLE1: [ 9.]   i = 3.0
+Stable2: [ 3.]   j = 1.0
+Average Stable: [ 6.]   InI: 3
+Competition: (kA,kB) 3.0, 1.0
+Fit Params A: [ 0.00645864  0.50673616], 1.41955548318e-07
+Fit Params B: [-0.00645864  0.49326384], 1.41955547947e-07
+Fitness/Cost A: [ 0.04133527]
+---------//---------
+Stable2: [ 6.]   j = 2.0
+Average Stable: [ 7.5]   InI: 3
+Competition: (kA,kB) 3.0, 2.0
+Fit Params A: [ 0.0020888   0.50042455], 5.67973338577e-09
+Fit Params B: [-0.0020888   0.49957545], 5.67973268788e-09
+Fitness/Cost A: [ 0.0279899]
+---------//---------
+Stable2: [ 9.]   j = 3.0
+Average Stable: [ 9.]   InI: 4
+Competition: (kA,kB) 3.0, 3.0
+Fit Params A: [ -2.89288866e-06   5.00239549e-01], 5.62818618215e-10
+Fit Params B: [  2.89569360e-06   4.99760437e-01], 5.62736996308e-10
+Fitness/Cost A: [ -5.09148404e-05]
+---------//---------
+
+Total Simu Time 114.718

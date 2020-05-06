@@ -132,8 +132,10 @@ def Go(inA, inB, h, kA, kB):
     #Upper and lower cuts for the normalized amount of plasmids
     #  This avoids the code to run for amounts where the reproduction
     #  probability is determined by 1/N (irrelevant for this project)
-    tUP = 1 - (1/float(inA+inB))
-    tDw = (1/float(inA+inB))
+    #tUP = 1 - (1/float(inA+inB))
+    #tDw = (1/float(inA+inB))
+    tUP = 0.75
+    tDw = 0.25
 
     #Limit of number of events for the simulation
     # this limit is called LEN
@@ -312,15 +314,30 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     t0 = time.time()
 
     #Array for all events of type A, in terms of plasmid amount, for all rounds
-    AA = np.array([])
+    #AA = np.array([])
 
     #Array for all events of type B, in terms of plasmid amount, for all rounds
-    BB = np.array([])
+    #BB = np.array([])
 
-    #Top limit for the average and the corresponding fit
-    #LENF = 250
-    LENFL = int((inA+inB))+10
-    LENF = 250
+    #-------Limits for the average and the corresponding fit--------
+    #Data of average of total plasmids is calculated in another script
+    # this data is recorded on csv files for optimization
+    NKb = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=1)
+    Navg = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=2)
+    CutPre = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=3)
+
+    #Average of total plasmids for this competition
+    inNKb = np.where(NKb==kB)[0]
+    NNavg = Navg[inNKb]
+
+    #Cuts of fit
+    CutIniFit = int(CutPre[inNKb][0])
+    #print CutIniFit
+    FinalFit = int(CutIniFit+10)
+    #print FinalFit
+
+    #Cut final for average line
+    LENF = 400
 
     #Return of Go function (check Go comments)
     pA, pB, npA, npB, winA, winB = Go(inA, inB, h, kA, kB)
@@ -335,10 +352,9 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Graph for first round simulation
     # type A = blue   type B = green
     #Condition to graph only 1 general simulation
-    #CHANGED!
     if (rep == cc) == True:
-        plt.plot(np.linspace(0,len(npA[:(inA+inB)]), num = len(npA)), npA, c = "b")
-        plt.plot(np.linspace(0,len(npB[:(inA+inB)]), num = len(npB)), npB, c = "g")
+        plt.plot(np.linspace(0,len(npA), num = len(npA)), npA, c = "b")
+        plt.plot(np.linspace(0,len(npB), num = len(npB)), npB, c = "g")
 
     #Subsequent rounds
     for i in range(rounds):
@@ -362,12 +378,12 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         primerB += npB[:LENF]
 
         #Length of arrays npA and npB are the same
-        sizea = npA.size
+        #sizea = npA.size
 
         #Addition of events of each round to the general array,
         # of all events in terms of plasmid amount, for both types
-        AA = np.append(AA,npA)
-        BB = np.append(BB,npB)
+        #AA = np.append(AA,npA)
+        #BB = np.append(BB,npB)
 
         #Done simulation round
 
@@ -378,20 +394,18 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     meanA = primerA
     meanB = primerB
 
-    #----Fit----
-    #Limits for performing the fit
-    #Top cut is LENF
-    #print "Fitcut: " + str(LENF)
-    #Initial limit is set so that 1 generation is allowed for
-    # the system to globally stabilize
-    #cutIN = int((inA+inB)/2.0)
-    cutIN = int((inA+inB))
-    #cutIN = 50
+    #--------Fit-------
+    #Cuts of fit
+    #CutIniFit = CutPre[inNKb]
+    #FinalFit = CutIniFit+10
+
+    #Cut final for average line
+    #LENF = 250
 
     #Fit is done in the average simulation line
     #Array with delimitation that it is important for the fit
-    LA = meanA[(cutIN):(LENFL)]
-    LB = meanB[(cutIN):(LENFL)]
+    LA = meanA[CutIniFit:FinalFit]
+    LB = meanB[CutIniFit:FinalFit]
 
     #Proposed linear fit function
     #Param: m slope
@@ -405,7 +419,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Returns the parameters of the fit
 
     #LA y LB are of the same length
-    mAA, covAA = curve_fit(fun, np.linspace(cutIN, LENFL, num = len(LA)), LA)
+    mAA, covAA = curve_fit(fun, np.linspace(CutIniFit, FinalFit, num = len(LA)), LA)
 
     #The slope is the variable of interest
     #Slope parameter
@@ -423,7 +437,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #Linear fit type B
     #Same but for type B
-    mBB, covBB = curve_fit(fun, np.linspace(cutIN, LENFL, num = len(LA)), LB)
+    mBB, covBB = curve_fit(fun, np.linspace(CutIniFit, FinalFit, num = len(LB)), LB)
     #Slope parameter
     mB = mBB[0]
     #y-intercept parameter
@@ -439,22 +453,15 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
 
     #----------COST_CALCULATION---------
-    #Data of average of total plasmids is calculated in another script
-    # this data is recorded on csv files for optimization
-    NKb = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=1)
-    Navg = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=2)
-
     #Average of total plasmids for this competition
-    inNKb = np.where(NKb==kB)[0]
-    NNavg = Navg[inNKb]
-
+    #NNavg = Navg[inNKb]
 
     #Cost of type A
-    #FA = 2*mA*(NNavg)
-    FA = 2*mA
+    FA = 2*mA*(NNavg)
+    #FA = 2*mA
     #Cost of type B
-    #FB = 2*mB*(NNavg)
-    FB = 2*mB
+    FB = 2*mB*(NNavg)
+    #FB = 2*mB
 
     #Print in Log txt ***
     text_file = open("Results/Log_"+str(h)+".txt", "a+")
@@ -479,8 +486,8 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
         #----Plot fit----
         #x axis info for plotting fit
-        xxxa = np.linspace(cutIN, LENFL, num = len(LA))
-        xxxb = np.linspace(cutIN, LENFL, num = len(LB))
+        xxxa = np.linspace(CutIniFit, FinalFit, num = len(LA))
+        xxxb = np.linspace(CutIniFit, FinalFit, num = len(LB))
 
         #Plot fit of average line simulation
         plt.plot(xxxa, fun(xxxa, mA*np.ones(len(LA)) , cA*np.ones(len(LA))) , '--',c = "deeppink", label="Fit $K_{A}$", linewidth = 4)
@@ -584,9 +591,6 @@ def contourG(start,stop,hop,h,rep):
     n = text_file.write("RANGE OF CALCULATION: "+str(KKA)+"\n")
     text_file.close()
 
-    #print "RANGE OF CALCULATION:"
-    #print KKA
-
     #Generate Grid - KKA is x KKB is y
     X, Y = np.meshgrid(KKA, KKB)
 
@@ -597,8 +601,6 @@ def contourG(start,stop,hop,h,rep):
     text_file = open("Results/Log_"+str(h)+".txt", "a+")
     n = text_file.write("LEN OF RANGE: (KKA,KKB) "+str(len(KKA))+","+str(len(KKB))+"\n \n")
     text_file.close()
-    #print "LEN OF RANGE: "
-    #print len(KKA), len(KKB)
 
     #Variance of the slope for type A
     vi = np.ones((len(KKA),len(KKB)))
@@ -711,4 +713,4 @@ def contourG(start,stop,hop,h,rep):
     #print tsim
 
 #contourG(start,stop,hop,h,rep)
-contourG(2,22,6,3,3)
+contourG(1,3,3,3,1)
