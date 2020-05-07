@@ -153,11 +153,11 @@ def exe(inA, h, kA):
     plt.clf()
 
 #np.linspace(start,stop,hop)
-SS = np.linspace(2,2,1)
+SS = np.linspace(51,55,5)
 print SS
 
 #Execute code for same h for a given range of k
 for i in SS:
     #Always start with 1 plasmids
     #exe(inA,h,kA)
-    exe(1,3,i)
+    exe(1,4,i)

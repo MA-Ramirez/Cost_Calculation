@@ -713,4 +713,9 @@ def contourG(start,stop,hop,h,rep):
     #print tsim
 
 #contourG(start,stop,hop,h,rep)
-contourG(1,3,3,3,1)
+#h=2
+#contourG(4,24,6,2,3)
+#h=3
+contourG(7,42,6,3,3)
+#h=4
+#contourG(9,54,6,4,3)
