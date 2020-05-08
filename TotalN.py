@@ -193,7 +193,8 @@ def Go(inA, inB, h, kA, kB):
             countB = 0
             #There will be reproduction while reproduction probability
             # is above 2%
-            while (probA >= 0.02 and probB >= 0.02) and S == 0:
+            while (probA >= 0.02 or probB >= 0.02) and S == 0:
+
 
                 countB +=1
 
@@ -307,9 +308,9 @@ def Go(inA, inB, h, kA, kB):
         #Limits avoid the code to run for amounts where the reproduction
         #  probability is determined by 1/N (irrelevant for this project)
         #Upper normalized limit of plasmids
-        Unl = 0.75
+        Unl = tUP
         #Lower normalized limit of plasmids
-        Lnl = 0.25
+        Lnl = tDw
 
         #Markers and conditions to break the loop
         if C1 == False and C2 == False:
@@ -524,7 +525,7 @@ def full(h,kA,kB,inI,rep):
      #print kA,kB
 
      #General rounds are rounds +1
-     rounds = 299
+     rounds = 499
 
      #Marker that helps to graph only one general simulation (optimization)
      cc = 0
@@ -620,4 +621,4 @@ def contourG(start,stop,hop,h,rep):
     text_file.close()
 
 #contourG(start,stop,hop,h,rep)
-contourG(9,54,6,4,1)
+contourG(1,3,3,3,1)

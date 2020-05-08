@@ -176,7 +176,7 @@ def Go(inA, inB, h, kA, kB):
 
             #There will be reproduction while reproduction probability
             # is above 2%
-            while (probA >= 0.02 and probB >= 0.02) and S == 0:
+            while (probA >= 0.02 or probB >= 0.02) and S == 0:
 
                 A,B,probA,probB = Birth(h,kA,kB,inA,inB)
                 inA = A
@@ -333,7 +333,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Cuts of fit
     CutIniFit = int(CutPre[inNKb][0])
     #print CutIniFit
-    FinalFit = int(CutIniFit+10)
+    FinalFit = int(CutIniFit+50)
     #print FinalFit
 
     #Cut final for average line
@@ -714,8 +714,8 @@ def contourG(start,stop,hop,h,rep):
 
 #contourG(start,stop,hop,h,rep)
 #h=2
-#contourG(4,24,6,2,3)
+#contourG(2,18,5,2,3)
 #h=3
-contourG(7,42,6,3,3)
+#contourG(4,34,6,3,3)
 #h=4
-#contourG(9,54,6,4,3)
+#contourG(5,45,6,4,3)
