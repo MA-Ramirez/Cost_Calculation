@@ -86,11 +86,8 @@ def Go(inA, h, kA):
 
         #Primer Birth
         A,probA = Birth(h,kA,inA)
-        #inA = A
-        #pA = np.append(pA,inA)
 
-        #While the probability of reproduction is above 0.5% it is performed:
-        #while probA >= 0.005:
+        #While the probability of reproduction is above 2% it is performed:
         while probA >= 0.02:
 
             A,probA = Birth(h,kA,inA)
@@ -125,6 +122,7 @@ def exe(inA, h, kA):
     #Start measuring the time
     t0 = time.time()
 
+    #Array with amount of plasmids per event
     pA = Go(inA, h, kA)
 
     #Time of simulation
@@ -133,8 +131,10 @@ def exe(inA, h, kA):
     #average stabilization number
     avgpA = round(np.mean(pA))
 
+    #Prints h, k and average of stabilization
     print h,kA,avgpA
 
+    #Records in .csv the data
     #First column K, second column average stabilization number
     text_file = open(str(h)+"Stable.csv", "a+")
     n = text_file.write(str(kA)+","+str(avgpA)+"\n")
