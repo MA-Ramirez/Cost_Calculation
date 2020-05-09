@@ -648,9 +648,9 @@ def contourG(start,stop,hop,h,rep):
 
 #contourG(start,stop,hop,h,rep)
 #h=2
-#contourG(2,18,5,2,3)
+#contourG(2,18,9,2,3)
 #h=3
-#contourG(4,34,6,3,3)
-contourG(1,3,3,3,1)
+#contourG(4,34,11,3,3)
+#contourG(1,3,3,3,1)
 #h=4
-#contourG(5,45,6,4,3)
+#contourG(5,45,11,4,3)
