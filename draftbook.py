@@ -27,7 +27,8 @@ print np.linspace(7,34,10)
 print "\n"
 #h=4
 print np.linspace(5,45,6)
-print np.linspace(5,45,9)
+print np.linspace(5,45,11)
+print np.linspace(9,9,1)
 #[  5.  13.  21.  29.  37.  45.]
 #print np.linspace(7,42,6)
 #[  7.  14.  21.  28.  35.  42.]
