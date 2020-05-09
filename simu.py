@@ -51,9 +51,6 @@ def Birth(h,kA,kB,A,B):
     #Threshold B
     TB = (probB*B) / tot
 
-    #Threshold none
-    #TN = 1.0 - TA - TB
-
     #Random number between 0-1
     Q1 = np.random.random()
     Q2 = np.random.random()
@@ -114,12 +111,10 @@ def nor(AA,BB):
 #Param: kA K of plasmid type A
 #Param: kB K of plasmid type B
 #Return: pA, pB arrays with data of each event for the plasmids type A and B
+#Return: npA, npB normalized arrays with data of each event for the plasmids type A and B
 def Go(inA, inB, h, kA, kB):
     #Stop marker to avoid infinite loops
     S = 0
-    #Win count
-    winA = 0
-    winB = 0
 
     #Arrays with data of each event for the plasmids
     pA = np.array([inA])
@@ -161,16 +156,6 @@ def Go(inA, inB, h, kA, kB):
             #Run whole process
             #Primer for condition below
             A,B,probA,probB = Birth(h,kA,kB,inA,inB)
-            #inA = A
-            #inB = B
-            #pA = np.append(pA,inA)
-            #pB = np.append(pB,inB)
-
-            #Normalization
-            #cinA, cinB = nor(inA,inB)
-            #npA = np.append(npA,cinA)
-            #npB = np.append(npB,cinB)
-
 
             #--------------BIRTH----------------
 
@@ -243,23 +228,13 @@ def Go(inA, inB, h, kA, kB):
                 if (C1 == False or C2 == False):
                     S = 1
 
-                #If one plasmid has already took completely over the population
-                # the process is stopped
-                elif inA == 0 or cinA <= tDw:
-                    winB += 1
-                    break
-                elif inB == 0 or cinB >= tUP:
-                    winA += 1
-                    break
 
         #Creation of normalized arrays
         #Limits avoid the code to run for amounts where the reproduction
         #  probability is determined by 1/N (irrelevant for this project)
         #Upper normalized limit of plasmids
-        #Unl = 0.75
         Unl = tUP
         #Lower normalized limit of plasmids
-        #Lnl = 0.25
         Lnl = tDw
 
         #Markers and conditions to break the loop
@@ -288,9 +263,7 @@ def Go(inA, inB, h, kA, kB):
     #Results of the whole process
     #pA, pB arrays with amount of plasmids for each event (type A and B)
     #npA, npB arrays of pA and pB normalized to 1
-    #winA, winB win counts = amount of times each plasmids
-    # takes over the population (partially)
-    return pA, pB, npA, npB, winA, winB
+    return pA, pB, npA, npB
 
 
 #--------REPETITION OF THE PROCESS & GRAPHS------------
@@ -305,33 +278,22 @@ def Go(inA, inB, h, kA, kB):
 #Param: kB K of plasmid type B
 #rep and cc are used to only graph one general simulation (optimization)
 def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
-    #Counts win A (partial dominations)
-    GwinA = 0
-    #Counts win B (partial dominations)
-    GwinB = 0
 
     #Start measuring simulation time
     t0 = time.time()
-
-    #Array for all events of type A, in terms of plasmid amount, for all rounds
-    #AA = np.array([])
-
-    #Array for all events of type B, in terms of plasmid amount, for all rounds
-    #BB = np.array([])
 
     #-------Limits for the average and the corresponding fit--------
     #Data of average of total plasmids is calculated in another script
     # this data is recorded on csv files for optimization
     NKb = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=1)
     Navg = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=2)
-    CutPre = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=3)
 
     #Average of total plasmids for this competition
     inNKb = np.where(NKb==kB)[0]
     NNavg = Navg[inNKb]
 
     #Cuts of fit
-    CutIniFit = int(CutPre[inNKb][0])
+    CutIniFit = 0
     #print CutIniFit
     FinalFit = int(CutIniFit+50)
     #print FinalFit
@@ -340,7 +302,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     LENF = 400
 
     #Return of Go function (check Go comments)
-    pA, pB, npA, npB, winA, winB = Go(inA, inB, h, kA, kB)
+    pA, pB, npA, npB = Go(inA, inB, h, kA, kB)
 
 
     #-----First round-----
@@ -360,11 +322,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     for i in range(rounds):
 
         #Return of Go function (check Go comments)
-        pA, pB, npA, npB, winA, winB = Go(inA, inB, h, kA, kB)
-
-        #Sum of wins for each type of plasmid
-        GwinA += winA
-        GwinB += winB
+        pA, pB, npA, npB = Go(inA, inB, h, kA, kB)
 
         #Graph for simulations
         # type A = blue   type B = green
@@ -377,14 +335,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         primerA += npA[:LENF]
         primerB += npB[:LENF]
 
-        #Length of arrays npA and npB are the same
-        #sizea = npA.size
-
-        #Addition of events of each round to the general array,
-        # of all events in terms of plasmid amount, for both types
-        #AA = np.append(AA,npA)
-        #BB = np.append(BB,npB)
-
         #Done simulation round
 
 
@@ -396,8 +346,8 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #--------Fit-------
     #Cuts of fit
-    #CutIniFit = CutPre[inNKb]
-    #FinalFit = CutIniFit+10
+    #CutIniFit = 0
+    #FinalFit = CutIniFit+50
 
     #Cut final for average line
     #LENF = 250
@@ -458,17 +408,14 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #Cost of type A
     FA = 2*mA*(NNavg)
-    #FA = 2*mA
+
     #Cost of type B
     FB = 2*mB*(NNavg)
-    #FB = 2*mB
 
     #Print in Log txt ***
     text_file = open("Results/Log_"+str(h)+".txt", "a+")
     n = text_file.write("Fitness/Cost A: "+str(FA)+"\n")
     text_file.close()
-    #print "Fitness/Cost A: " +str(FA)
-
 
     #-----------------GRAPHS---------------------
     #Graph of average simulation line and corresponding fit
@@ -498,7 +445,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         plt.plot(0,0, c = "white", label = "$u_{A}$ = " + str(round(mA,5)))
         plt.plot(0,0, c = "white", label = "$u_{B}$ = " + str(round(mB,5)))
         #plt.plot(0,0, c = "k", label = "Rounds = "+str(rounds+1))
-        #plt.plot(0,0, c = "k", label = "Win " + str(kA) + " = " + str(GwinA) + "   Win " + str(kB) + " = " + str(GwinB))
 
         #Upper limit should match with Go LEN
         #General simulation
@@ -540,7 +486,6 @@ def full(h,kA,kB,inI,rep):
      text_file = open("Results/Log_"+str(h)+".txt", "a+")
      n = text_file.write("Competition: (kA,kB) "+str(kA)+", "+str(kB)+"\n")
      text_file.close()
-     #print kA,kB
 
      #General rounds are rounds +1
      rounds = 599
@@ -624,9 +569,6 @@ def contourG(start,stop,hop,h,rep):
         n = text_file.write("STABLE1: "+ str(Stable1)+"   i = "+str(i)+"\n")
         text_file.close()
 
-        #print "Stable1: " + str(Stable1)
-        #print i
-
         #Counter for location
         yF = 0
 
@@ -640,9 +582,6 @@ def contourG(start,stop,hop,h,rep):
             n = text_file.write("Stable2: "+ str(Stable2)+"   j = "+str(j)+"\n")
             text_file.close()
 
-            #print "Stable2: " + str(Stable2)
-            #print j
-
             #Average of stabilization
             AvgStable = (Stable1 + Stable2)/2.0
             #Turns it into int, no decimal amount of plasmids
@@ -652,9 +591,6 @@ def contourG(start,stop,hop,h,rep):
             text_file = open("Results/Log_"+str(h)+".txt", "a+")
             n = text_file.write("Average Stable: "+ str(AvgStable)+"   InI: "+str(inI)+"\n")
             text_file.close()
-
-            #print "Average Stable: " + str(AvgStable)
-            #print "InI: " + str(inI)
 
             #Assigns calculated cost and variance
             #Check comments for full - to only calculate cost use full
@@ -710,12 +646,11 @@ def contourG(start,stop,hop,h,rep):
     n = text_file.write("Total Simu Time "+ str(tsim))
     text_file.close()
 
-    #print tsim
-
 #contourG(start,stop,hop,h,rep)
 #h=2
 #contourG(2,18,5,2,3)
 #h=3
 #contourG(4,34,6,3,3)
+contourG(1,3,3,3,1)
 #h=4
 #contourG(5,45,6,4,3)
