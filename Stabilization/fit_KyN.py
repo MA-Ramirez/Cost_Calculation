@@ -74,7 +74,7 @@ plt.title("Slope ($m_{nK}$) vs Hill Coefficient ($h$)")
 plt.xlabel("Hill Coefficient ($h$)")
 plt.ylabel("Slope of graph $\overline{n}$ vs $K$ ($m_{nK}$)")
 plt.legend(loc=1)
-plt.text(4, 9, "$m_{nK}$="+str(round(Phm[0],3))+"$e^{(-h)}$+"+str(round(Phm[1],3)), bbox=dict(facecolor='cyan', alpha=0.2))
+plt.text(4, 5, "$m_{nK}$="+str(round(Phm[0],3))+"$e^{(-h)}$+"+str(round(Phm[1],3)), bbox=dict(facecolor='cyan', alpha=0.2))
 plt.savefig("StableGraphs/GeneralFit_m_vs_h.png")
 plt.clf()
 

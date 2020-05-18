@@ -132,7 +132,7 @@ def exe(inA, h, kA):
     avgpA = round(np.mean(pA))
 
     #Prints h, k and average of stabilization
-    print h,kA,avgpA
+    #print h,kA,avgpA
 
     #Records in .csv the data
     #First column K, second column average stabilization number
@@ -140,6 +140,7 @@ def exe(inA, h, kA):
     n = text_file.write(str(kA)+","+str(avgpA)+"\n")
     text_file.close()
 
+    """
     #Graph
     plt.plot(np.linspace(0,len(pA), num = len(pA)), pA, label = "$K$ = " + str(kA) +", $h$ = " + str(h))
     #Legends
@@ -151,13 +152,26 @@ def exe(inA, h, kA):
     plt.ylabel("Number of plasmids")
     plt.savefig("h"+str(h)+"/graph_" + str(kA)+ "_" + str(h) + ".png")
     plt.clf()
+    """
 
 #np.linspace(start,stop,hop)
-SS = np.linspace(51,55,5)
-print SS
+SS33 = np.linspace(3,50,48)
+print SS33
+SS37 = np.linspace(4,55,52)
+print SS37
+SS43 = np.linspace(5,60,56)
+print SS43
+SS47 = np.linspace(5,65,61)
+print SS47
+SS5 = np.linspace(5,70,66)
+print SS5
 
 #Execute code for same h for a given range of k
-for i in SS:
+#for i in SS:
     #Always start with 1 plasmids
     #exe(inA,h,kA)
-    exe(1,4,i)
+    #exe(1,2.7,i)
+
+#exe(1,5,5)
+#exe(1,5,6)
+#exe(1,5,70)
