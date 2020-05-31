@@ -1,0 +1,324 @@
+RANGE OF CALCULATION: [  4.   8.  12.  16.  20.  24.  28.  32.  36.  40.]
+LEN OF RANGE: (KKA,KKB) 10,10
+ 
+STABLE1: [ 11.]   i = 4.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 11.]   InI: 5
+Competition: (kA,kB) 4.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 16.5]   InI: 8
+Competition: (kA,kB) 4.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 22.]   InI: 11
+Competition: (kA,kB) 4.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 27.]   InI: 13
+Competition: (kA,kB) 4.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 32.5]   InI: 16
+Competition: (kA,kB) 4.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 38.]   InI: 19
+Competition: (kA,kB) 4.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 43.5]   InI: 21
+Competition: (kA,kB) 4.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 48.5]   InI: 24
+Competition: (kA,kB) 4.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 54.]   InI: 27
+Competition: (kA,kB) 4.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 59.]   InI: 29
+Competition: (kA,kB) 4.0, 40.0
+
+STABLE1: [ 22.]   i = 8.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 16.5]   InI: 8
+Competition: (kA,kB) 8.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 22.]   InI: 11
+Competition: (kA,kB) 8.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 27.5]   InI: 13
+Competition: (kA,kB) 8.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 32.5]   InI: 16
+Competition: (kA,kB) 8.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 38.]   InI: 19
+Competition: (kA,kB) 8.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 43.5]   InI: 21
+Competition: (kA,kB) 8.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 49.]   InI: 24
+Competition: (kA,kB) 8.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 54.]   InI: 27
+Competition: (kA,kB) 8.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 8.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 64.5]   InI: 32
+Competition: (kA,kB) 8.0, 40.0
+
+STABLE1: [ 33.]   i = 12.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 22.]   InI: 11
+Competition: (kA,kB) 12.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 27.5]   InI: 13
+Competition: (kA,kB) 12.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 33.]   InI: 16
+Competition: (kA,kB) 12.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 38.]   InI: 19
+Competition: (kA,kB) 12.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 43.5]   InI: 21
+Competition: (kA,kB) 12.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 49.]   InI: 24
+Competition: (kA,kB) 12.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 54.5]   InI: 27
+Competition: (kA,kB) 12.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 12.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 65.]   InI: 32
+Competition: (kA,kB) 12.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 70.]   InI: 35
+Competition: (kA,kB) 12.0, 40.0
+
+STABLE1: [ 43.]   i = 16.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 27.]   InI: 13
+Competition: (kA,kB) 16.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 32.5]   InI: 16
+Competition: (kA,kB) 16.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 38.]   InI: 19
+Competition: (kA,kB) 16.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 43.]   InI: 21
+Competition: (kA,kB) 16.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 48.5]   InI: 24
+Competition: (kA,kB) 16.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 54.]   InI: 27
+Competition: (kA,kB) 16.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 16.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 64.5]   InI: 32
+Competition: (kA,kB) 16.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 70.]   InI: 35
+Competition: (kA,kB) 16.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 75.]   InI: 37
+Competition: (kA,kB) 16.0, 40.0
+
+STABLE1: [ 54.]   i = 20.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 32.5]   InI: 16
+Competition: (kA,kB) 20.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 38.]   InI: 19
+Competition: (kA,kB) 20.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 43.5]   InI: 21
+Competition: (kA,kB) 20.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 48.5]   InI: 24
+Competition: (kA,kB) 20.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 54.]   InI: 27
+Competition: (kA,kB) 20.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 20.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 65.]   InI: 32
+Competition: (kA,kB) 20.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 70.]   InI: 35
+Competition: (kA,kB) 20.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 75.5]   InI: 37
+Competition: (kA,kB) 20.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 80.5]   InI: 40
+Competition: (kA,kB) 20.0, 40.0
+
+STABLE1: [ 65.]   i = 24.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 38.]   InI: 19
+Competition: (kA,kB) 24.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 43.5]   InI: 21
+Competition: (kA,kB) 24.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 49.]   InI: 24
+Competition: (kA,kB) 24.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 54.]   InI: 27
+Competition: (kA,kB) 24.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 24.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 65.]   InI: 32
+Competition: (kA,kB) 24.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 70.5]   InI: 35
+Competition: (kA,kB) 24.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 75.5]   InI: 37
+Competition: (kA,kB) 24.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 81.]   InI: 40
+Competition: (kA,kB) 24.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 86.]   InI: 43
+Competition: (kA,kB) 24.0, 40.0
+
+STABLE1: [ 76.]   i = 28.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 43.5]   InI: 21
+Competition: (kA,kB) 28.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 49.]   InI: 24
+Competition: (kA,kB) 28.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 54.5]   InI: 27
+Competition: (kA,kB) 28.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 28.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 65.]   InI: 32
+Competition: (kA,kB) 28.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 70.5]   InI: 35
+Competition: (kA,kB) 28.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 76.]   InI: 38
+Competition: (kA,kB) 28.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 81.]   InI: 40
+Competition: (kA,kB) 28.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 86.5]   InI: 43
+Competition: (kA,kB) 28.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 91.5]   InI: 45
+Competition: (kA,kB) 28.0, 40.0
+
+STABLE1: [ 86.]   i = 32.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 48.5]   InI: 24
+Competition: (kA,kB) 32.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 54.]   InI: 27
+Competition: (kA,kB) 32.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 32.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 64.5]   InI: 32
+Competition: (kA,kB) 32.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 70.]   InI: 35
+Competition: (kA,kB) 32.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 75.5]   InI: 37
+Competition: (kA,kB) 32.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 81.]   InI: 40
+Competition: (kA,kB) 32.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 86.]   InI: 43
+Competition: (kA,kB) 32.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 91.5]   InI: 45
+Competition: (kA,kB) 32.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 96.5]   InI: 48
+Competition: (kA,kB) 32.0, 40.0
+
+STABLE1: [ 97.]   i = 36.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 54.]   InI: 27
+Competition: (kA,kB) 36.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 59.5]   InI: 29
+Competition: (kA,kB) 36.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 65.]   InI: 32
+Competition: (kA,kB) 36.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 70.]   InI: 35
+Competition: (kA,kB) 36.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 75.5]   InI: 37
+Competition: (kA,kB) 36.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 81.]   InI: 40
+Competition: (kA,kB) 36.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 86.5]   InI: 43
+Competition: (kA,kB) 36.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 91.5]   InI: 45
+Competition: (kA,kB) 36.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 97.]   InI: 48
+Competition: (kA,kB) 36.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 102.]   InI: 51
+Competition: (kA,kB) 36.0, 40.0
+
+STABLE1: [ 107.]   i = 40.0
+Stable2: [ 11.]   j = 4.0
+Average Stable: [ 59.]   InI: 29
+Competition: (kA,kB) 40.0, 4.0
+Stable2: [ 22.]   j = 8.0
+Average Stable: [ 64.5]   InI: 32
+Competition: (kA,kB) 40.0, 8.0
+Stable2: [ 33.]   j = 12.0
+Average Stable: [ 70.]   InI: 35
+Competition: (kA,kB) 40.0, 12.0
+Stable2: [ 43.]   j = 16.0
+Average Stable: [ 75.]   InI: 37
+Competition: (kA,kB) 40.0, 16.0
+Stable2: [ 54.]   j = 20.0
+Average Stable: [ 80.5]   InI: 40
+Competition: (kA,kB) 40.0, 20.0
+Stable2: [ 65.]   j = 24.0
+Average Stable: [ 86.]   InI: 43
+Competition: (kA,kB) 40.0, 24.0
+Stable2: [ 76.]   j = 28.0
+Average Stable: [ 91.5]   InI: 45
+Competition: (kA,kB) 40.0, 28.0
+Stable2: [ 86.]   j = 32.0
+Average Stable: [ 96.5]   InI: 48
+Competition: (kA,kB) 40.0, 32.0
+Stable2: [ 97.]   j = 36.0
+Average Stable: [ 102.]   InI: 51
+Competition: (kA,kB) 40.0, 36.0
+Stable2: [ 107.]   j = 40.0
+Average Stable: [ 107.]   InI: 53
+Competition: (kA,kB) 40.0, 40.0
+
+Total Simu Time 2367.41

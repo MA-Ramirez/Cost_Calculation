@@ -38,3 +38,31 @@ print np.linspace(5,45,11)
 #[  7.  14.  21.  28.  35.  42.]
 #print np.linspace(9,54,6)
 #[  9.  18.  27.  36.  45.  54.]
+
+print "\n h = 2.3"
+#h=2.3
+print np.linspace(3,24,8)
+
+print "\n h = 2.7"
+#h=2.7
+print np.linspace(3,30,10)
+
+print "\n h = 3.3"
+#h=3.3
+print np.linspace(4,40,10)
+
+print "\n h = 3.7"
+#h=3.7
+print np.linspace(4,46,8)
+
+print "\n h = 4.3"
+#h=4.3
+print np.linspace(5,50,10)
+
+print "\n h = 4.7"
+#h=4.7
+print np.linspace(5,54,8)
+
+print "\n h = 5"
+#h=5
+print np.linspace(6,54,9)

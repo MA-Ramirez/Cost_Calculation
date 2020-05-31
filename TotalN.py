@@ -480,9 +480,9 @@ def contourG(start,stop,hop,h,rep):
             n = text_file.write("Average Stable: "+ str(AvgStable)+"   InI: "+str(inI)+"\n")
             text_file.close()
 
-            if (i-j) != 0:
-                full(h,i,j,inI,rep)
-            #full(h,i,j,inI,rep)
+            #if (i-j) != 0:
+                #full(h,i,j,inI,rep)
+            full(h,i,j,inI,rep)
 
 
         #Print in Log txt ***
@@ -499,4 +499,19 @@ def contourG(start,stop,hop,h,rep):
     text_file.close()
 
 #contourG(start,stop,hop,h,rep)
-contourG(41,45,2,4,1)
+#contourG(41,45,2,4,1)
+
+#h2.3
+contourG(3,24,8,2.3,1)
+#h=2.7
+contourG(3,30,10,2.7,1)
+#h=3.3
+contourG(4,40,10,3.3,1)
+#h=3.7
+contourG(4,46,8,3.7,1)
+#h=4.3
+contourG(5,50,10,4.3,1)
+#h=4.7
+contourG(5,54,8,4.7,1)
+#h=5
+contourG(6,54,9,5,1)
