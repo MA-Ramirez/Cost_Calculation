@@ -66,3 +66,29 @@ print np.linspace(5,54,8)
 print "\n h = 5"
 #h=5
 print np.linspace(6,54,9)
+
+s = -0.056
+ini = s
+L = []
+br = True
+while br == True:
+    if s == (-1*ini):
+        br = False
+    L.append(s)
+    s = s+0.008
+
+print L
+
+def barRange(st,hop):
+    s = st
+    ini = s
+    L = []
+    br = True
+    while br == True:
+        if s == (-1*ini):
+            br = False
+        L.append(s)
+        s = round(s+hop,3)
+    return L
+
+print barRange(-0.27,0.03)

@@ -453,7 +453,7 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         plt.xlabel("Events")
         plt.ylabel("Normalized amount of plasmids ($\eta$)")
         plt.legend(loc = 4, fontsize = "x-small")
-        plt.savefig("SimulationGraphs/Simu_h"+str(h)+"/Graph_" + str(kA) + "_" + str(kB) + "_" + str(int(h)) + ".png")
+        plt.savefig("SimulationGraphs/Simu_h"+str(h)+"/Graph_" + str(kA) + "_" + str(kB) + "_" + str(h) + ".png")
         plt.clf()
 
     #Return

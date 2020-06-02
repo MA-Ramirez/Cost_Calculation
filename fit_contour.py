@@ -14,23 +14,43 @@ def fun(x,y,a,b):
 def fun1(data,a,b):
     return a*np.log(data[0]) - b*np.log(data[1])
 
-#Normal
+#Short
+#kh3 = np.array([1,2,3])
+
+#Medium
 #kh2 = np.array([2,6,10,14,18])
 #kh3 = np.array([4,10,16,22,28,34])
 #kh4 = np.array([5,13,21,29,37,45])
 
-#Long
+#Long Sample
 kh2 = np.array([2,4,6,8,10,12,14,16,18])
 kh3 = np.array([4,7,10,13,16,19,22,25,28,31,34])
 kh4 = np.array([5,9,13,17,21,25,29,33,37,41,45])
 
-#Short
-#kh3 = np.array([1,2,3])
+#Rest
+kh23 = np.array([3,6,9,12,15,18,21,24])
+kh27 = np.array([3,6,9,12,15,18,21,24,27,30])
+kh33 = np.array([4,8,12,16,20,24,28,32,36,40])
+kh37 = np.array([4,10,16,22,28,34,40,46])
+kh43 = np.array([5,10,15,20,25,30,35,40,45,50])
+kh47 = np.array([5,12,19,26,33,40,47,54])
+kh5 = np.array([6,12,18,24,30,36,42,48,54])
 
+def barRange(st,hop):
+    s = st
+    ini = s
+    L = []
+    br = True
+    while br == True:
+        if s == (-1*ini):
+            br = False
+        L.append(s)
+        s = round(s+hop,3)
+    return L
 
 def fitCC(h):
     #First column of cost matrix
-    ColIni = np.genfromtxt("Results/DataCost_"+str(h)+"_W.txt", delimiter=",",usecols=0)
+    ColIni = np.genfromtxt("Results/DataCost_"+str(h)+".txt", delimiter=",",usecols=0)
 
     #The cost matrix in nxn, so #columns = #rows
     #Lenght of first colum
@@ -43,13 +63,13 @@ def fitCC(h):
         #KB
         KKB = kh2
         kh = kh2
-    elif h==23:
+    elif h==2.3:
         #KA
         KKA = kh23
         #KB
         KKB = kh23
         kh = kh23
-    elif h==27:
+    elif h==2.7:
         #KA
         KKA = kh27
         #KB
@@ -61,19 +81,49 @@ def fitCC(h):
         #KB
         KKB = kh3
         kh = kh3
+    elif h==3.3:
+        #KA
+        KKA = kh33
+        #KB
+        KKB = kh33
+        kh = kh33
+    elif h==3.7:
+        #KA
+        KKA = kh37
+        #KB
+        KKB = kh37
+        kh = kh37
     elif h==4:
         #KA
         KKA = kh4
         #KB
         KKB = kh4
         kh = kh4
+    elif h==4.3:
+        #KA
+        KKA = kh43
+        #KB
+        KKB = kh43
+        kh = kh43
+    elif h==4.7:
+        #KA
+        KKA = kh47
+        #KB
+        KKB = kh47
+        kh = kh47
+    elif h==5:
+        #KA
+        KKA = kh5
+        #KB
+        KKB = kh5
+        kh = kh5
 
 
     #Generate grid - KKA is Y and KKB is X
     X, Y = np.meshgrid(KKA, KKB)
 
     for i in range(1,n):
-        Col = np.genfromtxt("Results/DataCost_"+str(h)+"_W.txt", delimiter=",",usecols=i)
+        Col = np.genfromtxt("Results/DataCost_"+str(h)+".txt", delimiter=",",usecols=i)
         ColIni = np.append(ColIni, Col)
 
     Ans = np.zeros((n,n))
@@ -130,21 +180,35 @@ def fitCC(h):
 
     if h ==2:
         #Med and long
-        L =[-0.056,-0.048,-0.04,-0.032,-0.024,-0.016,-0.008,0.0,0.008,0.016,0.024,0.032,0.04,0.048,0.056]
+        L = barRange(-0.056,0.008)
+    elif h ==2.3:
+        L = barRange(-0.064,0.008)
+    elif h ==2.7:
+        L = barRange(-0.09,0.01)
     elif h ==3:
-        #Med
-        #L = 16
-        #Long
-        L = [-0.105,-0.09,-0.075,-0.06,-0.045,-0.03,-0.015,0.0,0.015,0.03,0.045,0.06,0.075,0.09,0.105]
         #Short
-        #L = [-0.04,-0.035,-0.03,-0.025,-0.02,-0.015,-0.01,-0.005,0.0,0.005,0.01,0.015,0.02,0.025,0.03,0.035,0.04]
+        #L = barRange(-0.04,0.005)
+
+        #Med and long
+        L = barRange(-0.105,0.015)
+    elif h ==3.3:
+        L = barRange(-0.12,0.015)
+    elif h ==3.7:
+        L = barRange(-0.16,0.02)
     elif h ==4:
         #Med
-        #L = [-0.175,-0.15,-0.125,-0.1,-0.075,-0.05,-0.025,0.0,0.025,0.05,0.075,0.1,0.125,0.15,0.175]
-        #Long
-        L=[-0.18,-0.16,-0.14,-0.12,-0.1,-0.08,-0.06,-0.04,-0.02,0.0,0.02,0.04,0.06,0.08,0.1,0.12,0.14,0.16,0.18]
+        #L = barRange(-0.175,0.025)
 
-    """
+        #Long sample
+        L = barRange(-0.18,0.02)
+    elif h ==4.3:
+        L = barRange(-0.2,0.025)
+    elif h ==4.7:
+        L = barRange(-0.24,0.03)
+    elif h ==5:
+        L = barRange(-0.27,0.03)
+
+
     plt.title("Fit Cost for plasmids type A ($h$ = "+str(h)+")")
     plt.contourf(X, Y, Fi, L, cmap="RdBu_r")
     plt.colorbar()
@@ -152,7 +216,7 @@ def fitCC(h):
     plt.ylabel("$K_{B}$")
     plt.xticks(kh)
     plt.yticks(kh)
-    plt.savefig("Results/Fit/Fit_"+str(h)+"_W.png")
+    plt.savefig("Results/Fit/Fit_"+str(h)+".png")
     #plt.show()
     plt.clf()
 
@@ -163,14 +227,21 @@ def fitCC(h):
     plt.ylabel("$K_{B}$")
     plt.xticks(kh)
     plt.yticks(kh)
-    plt.savefig("Results/Fit/Check_"+str(h)+"_W.png")
+    plt.savefig("Results/Fit/Check_"+str(h)+".png")
     #plt.show()
     plt.clf()
-    """
 
-fitCC(2)
-fitCC(3)
-fitCC(4)
+
+#fitCC(2)
+#fitCC(2.3)
+#fitCC(2.7)
+#fitCC(3)
+#fitCC(3.3)
+#fitCC(3.7)
+#fitCC(4)
+#fitCC(4.3)
+#fitCC(4.7)
+#fitCC(5)
 
 
 #Fit of ctes of fit function
@@ -178,12 +249,28 @@ def Fit_Cte():
     HS = np.genfromtxt("Results/Fit/CCte.csv", delimiter=",",usecols=0)
     CV = np.genfromtxt("Results/Fit/CCte.csv", delimiter=",",usecols=1)
 
+    def funA(x,m,c):
+        return m*x + c
+
+    #Ph: parameters obtained of fit
+    #Ph[0]: slope, Ph[1]: y-intercept
+    #coh: covariance of parameters
+    #curve_fit(function, xdata, ydata)
+    Ph1, coh1 = curve_fit(funA, HS, CV)
+    print Ph1, coh1
+
     plt.title("Fit Cost Constant ($A$) vs Hill Coefficient ($h$)")
-    plt.plot(HS,CV,c="r")
+    plt.plot(HS,CV,c="r",label="Data")
+
+    plt.plot(HS,funA(HS,Ph1[0],Ph1[1]),c="g",label="Lineal Fit")
+    plt.plot(0,0,c="white",label="$A$="+str(round(Ph1[0],3))+"$h$"+str(round(Ph1[1],3)))
+
     plt.xlabel("Hill Coefficient ($h$)")
     plt.ylabel("Fit cost constant ($A$)")
     plt.xticks(HS)
+    plt.xlim((2,5))
+    plt.legend(loc=2,fontsize="small")
     plt.savefig("Results/Fit/Cte_Fit.png")
     plt.clf()
 
-#Fit_Cte()
+Fit_Cte()
