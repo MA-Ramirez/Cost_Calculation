@@ -34,9 +34,6 @@ def Birth(h,kA,A):
     #Threshold A
     TA = (probA*A) / tot
 
-    #Threshold none
-    #TN = 1.0 - TA - TB
-
     #Random number between 0-1
     Q = np.random.random()
 
@@ -44,7 +41,6 @@ def Birth(h,kA,A):
     if Q <= probA:
         A+= 1
 
-    #print TA, Q, A
     return A,probA
 
 #Death
@@ -60,16 +56,16 @@ def Death(A):
     #random number between 0-1
     QQ = np.random.random()
 
-    #One of two types of deaths should happen
+    #Could be optimize, since there is only one type of plasmids
     #Death A
     if QQ <= TDA:
         A = A-1
 
-    #print TDA, TDB, TDA+TDB, QQ, A, B
     return A
 
 #Process
 #All the process is done together
+#Reproduction-Death cycle
 #Param: inA initial amount of plasmids type A
 #Param: h Hill coefficient
 #Param: kA of plasmid type A
@@ -87,7 +83,7 @@ def Go(inA, h, kA):
         #Primer Birth
         A,probA = Birth(h,kA,inA)
 
-        #While the probability of reproduction is above 2% it is performed:
+        #While the probability of reproduction is >= 2% it is performed:
         while probA >= 0.02:
 
             A,probA = Birth(h,kA,inA)
@@ -132,7 +128,7 @@ def exe(inA, h, kA):
     avgpA = round(np.mean(pA))
 
     #Prints h, k and average of stabilization
-    #print h,kA,avgpA
+    print h,kA,avgpA
 
     #Records in .csv the data
     #First column K, second column average stabilization number
@@ -140,7 +136,6 @@ def exe(inA, h, kA):
     n = text_file.write(str(kA)+","+str(avgpA)+"\n")
     text_file.close()
 
-    """
     #Graph
     plt.plot(np.linspace(0,len(pA), num = len(pA)), pA, label = "$K$ = " + str(kA) +", $h$ = " + str(h))
     #Legends
@@ -152,26 +147,16 @@ def exe(inA, h, kA):
     plt.ylabel("Number of plasmids")
     plt.savefig("h"+str(h)+"/graph_" + str(kA)+ "_" + str(h) + ".png")
     plt.clf()
-    """
 
+#Example range of K
 #np.linspace(start,stop,hop)
-SS33 = np.linspace(3,50,48)
-print SS33
-SS37 = np.linspace(4,55,52)
-print SS37
-SS43 = np.linspace(5,60,56)
-print SS43
-SS47 = np.linspace(5,65,61)
-print SS47
-SS5 = np.linspace(5,70,66)
-print SS5
+SS = np.linspace(3,50,48)
 
 #Execute code for same h for a given range of k
-#for i in SS:
-    #Always start with 1 plasmids
+for i in SS:
+    Always start with 1 plasmids
     #exe(inA,h,kA)
-    #exe(1,2.7,i)
+    exe(1,2.7,i)
 
-#exe(1,5,5)
-#exe(1,5,6)
-#exe(1,5,70)
+#Example 1 single K
+exe(1,5,70)
