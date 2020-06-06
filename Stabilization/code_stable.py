@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
+#Code by Maria Alejandra Ramirez
+#Script: code_stable.py
+
 #HILL FUNCTION FOR A REPRESSOR
 #Param: h Hill coefficient
 #Param: k repression coefficient
