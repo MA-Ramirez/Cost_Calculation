@@ -282,7 +282,7 @@ def Go(inA, inB, h, kA, kB):
 #Param: kB K of plasmid type B
 #rep and cc are used to only graph one general simulation (optimization)
 #Return: graphs of the simualtion
-#Return: CVS file for the corresponding quantity NT of each competition
+#Return: CSV file for the corresponding quantity NT of each competition
 def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #Return of Go function (check Go comments)
