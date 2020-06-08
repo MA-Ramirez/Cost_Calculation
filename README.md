@@ -35,7 +35,7 @@ That folder contains the following results: filled contour plots representing th
 cost results, filled contour plots illustrating the variance associated with the linear fits performed on the previous graphs and txt files with such 
 information.
 
-4. **Fits**
+4. **Fit**
 
 The fit performed on the cost results was done through the script *fit_contour.py*. Therefore, this script takes the results from the previous subsection
 and carries out the corresponding fit to find the relationship between the cost, KA and KB. The results of the fits are located in the folder
