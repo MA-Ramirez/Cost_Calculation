@@ -28,7 +28,7 @@ def Birth(h,kA,A):
     tot = float(A)
 
     #Type A (kA)
-    #nor: Bmax to normalize y, should fit with random.random()
+    #nor: Bmax to normalize y, to fit with random.random()
     norA, yA = repression(h,kA,tot)
 
     #Probability of reproduction normalized
@@ -59,7 +59,7 @@ def Death(A):
     #random number between 0-1
     QQ = np.random.random()
 
-    #Could be optimize, since there is only one type of plasmids
+    #Could be optimized, since there is only one type of plasmid
     #Death A
     if QQ <= TDA:
         A = A-1
@@ -113,10 +113,12 @@ def Go(inA, h, kA):
     return pA
 
 #Execute
-#It executes the process, graphs and reports the average stabilization number
+#It executes the simulation, graphs and reports the average stabilization number
 #Param: inA initial amount of plasmids type A
 #Param: h Hill coefficient
 #Param: kA of plasmid type A
+#Return: CSV file with the steady-state of a given K
+# if indicated it also graphs the simulation
 def exe(inA, h, kA):
     #Start measuring the time
     t0 = time.time()

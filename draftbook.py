@@ -1,5 +1,11 @@
 import numpy as np
 
+#Code by Maria Alejandra Ramirez
+#Script: draftbook.py
+
+#In this script quick code is written to check simple calculations
+# and code that could be implemented in the main scripts
+
 a = np.array([1,2,3,4,5,6,7,8])
 #print a[-1]
 

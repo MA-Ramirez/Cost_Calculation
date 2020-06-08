@@ -1,6 +1,6 @@
 RANGE OF CALCULATION: [  6.  12.  18.  24.  30.  36.  42.  48.  54.]
 LEN OF RANGE: (KKA,KKB) 9,9
- 
+
 STABLE1: [ 11.]   i = 6.0
 Stable2: [ 11.]   j = 6.0
 Average Stable: [ 11.]   InI: 5

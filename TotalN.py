@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 import time
 
 #Code by Maria Alejandra Ramirez
+#Script: TotalN.py
 
-#------SINGLE COMPETITION-------
+#------SINGLE COMPETITION (KA vs KB)-------
+#Non-relative population growth to calculate NT
 #Code to obtain the graph of a single competition
 # with rep repetitions
 
@@ -22,7 +24,7 @@ def repression(h,k,x):
 #------STABILIZATION-------------------
 #Stabilization data is done in another script for optimization
 
-#-----MORAN_FIT----------------
+#--------------------------------------
 #BIRTH
 #Generates a reproduction decision A,B or None
 #Param: h Hill coefficient
@@ -64,7 +66,8 @@ def Birth(h,kA,kB,A,B):
     #Birth B
     if Q2 <= TB:
         B += 1
-    #"else" ninguno
+
+    #"else" none (implicit)
 
     return A,B,probA,probB
 
@@ -97,7 +100,7 @@ def Death(A,B):
     return A,B
 
 #Normalize
-#Normalize the amount of plasmids to 1
+#Normalizes the amount of plasmids to 1
 #Param: AA amount of plasmids type A
 #Param: BB amount of plasmids type B
 #Return: cA, cB normalized amounts to 1
@@ -255,7 +258,7 @@ def Go(inA, inB, h, kA, kB):
                 npB = np.append(npB,tUP)
 
             #General process
-            #Code will run while the length of the array is lower
+            #Code will run while the length of the array is less
             # than the LEN limit
             if len(npA) >= LEN:
                 S = 1
@@ -268,7 +271,7 @@ def Go(inA, inB, h, kA, kB):
 
 
 #--------REPETITION OF THE PROCESS & GRAPHS------------
-#Repetition of the process and corresponding
+#Repetition of the process and corresponding graphs
 #Param: rounds times that the process is repeated +1
 #Param: rep repetitions of the same general simulation
 #Param: cc iteration of the current repetition
@@ -278,13 +281,9 @@ def Go(inA, inB, h, kA, kB):
 #Param: kA K of plasmid type A
 #Param: kB K of plasmid type B
 #rep and cc are used to only graph one general simulation (optimization)
+#Return: graphs of the simualtion
+#Return: CVS file for the corresponding quantity NT of each competition
 def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
-
-    #Start measuring simulation time
-    t0 = time.time()
-
-    #Top limit for the average and the corresponding fit
-    LENF = 250
 
     #Return of Go function (check Go comments)
     pA, pB, npA, npB = Go(inA, inB, h, kA, kB)
@@ -384,12 +383,8 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
         plt.clf()
 
 
-#Start measuring simulation time
-t0 = time.time()
-
-#Generates repetitions of the whole simulation to find an average of the Cost
-# for the same general simulation. It also gives the average of the Variance
-# of the fit of the slope
+#Generates repetitions of the whole simulation to find an average of the results
+# for the same general simulation.
 #Param: h Hill coefficient
 #Param: kA K of plasmid type A
 #Param: kB K of plasmid type B
@@ -414,10 +409,10 @@ def full(h,kA,kB,inI,rep):
         cc += 1
         repetitionHist(rounds,rep,cc,inI,inI,h,kA,kB)
 
-#----------------COST_CONTOUR_FIGURE----------------
+#----------GENERATES COUPLES FOR COMPETITIONS---------------------------
 
-#Creates the contour figure for the cost of type A (nxn graph)
-#The cost for each competition is the average of rep repetitions
+#Creates the one-on-one competitions
+#The quantity NT for each competition can be the average of rep repetitions
 # for the whole simulation of the given competition
 #Param: start Initial K
 #Param: stop Final K
@@ -425,6 +420,10 @@ def full(h,kA,kB,inI,rep):
 #Param: Hill coefficient
 #Param: rep Repetitions for the whole simulation of a given competition
 def contourG(start,stop,hop,h,rep):
+
+    #Start measuring simulation time
+    t0 = time.time()
+
     #Arrays for kA y kB that are gonna be used (nxn)
     # Example: np.linspace(1,3,3) = 1,2,3
     # Example: np.linspace(2,4,3) = 2,3,4
@@ -443,11 +442,15 @@ def contourG(start,stop,hop,h,rep):
 
     #Data of stabilization is calculated in another script
     # this data is recorded on csv files for optimization
+
+    #Note: to perform a simulation, the Stabilization data for the Ks involved
+    # should be available **********
+
     Sta = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=1)
     kIndex = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=0)
 
     #Initial inA y inB (same) is the average of both stabilizations, half half
-    #Simulation every competition
+    #Simulation  ofevery competition
 
     for i in KKA:
         #Stabilization value for kA
@@ -480,8 +483,11 @@ def contourG(start,stop,hop,h,rep):
             n = text_file.write("Average Stable: "+ str(AvgStable)+"   InI: "+str(inI)+"\n")
             text_file.close()
 
+            #Executes shortcut for Simulation
             #if (i-j) != 0:
                 #full(h,i,j,inI,rep)
+
+            #Executes Simulation
             full(h,i,j,inI,rep)
 
 
@@ -498,20 +504,6 @@ def contourG(start,stop,hop,h,rep):
     n = text_file.write("Total Simu Time "+ str(tsim)+"\n")
     text_file.close()
 
+#Example
 #contourG(start,stop,hop,h,rep)
-#contourG(41,45,2,4,1)
-
-#h2.3
-contourG(3,24,8,2.3,1)
-#h=2.7
-contourG(3,30,10,2.7,1)
-#h=3.3
-contourG(4,40,10,3.3,1)
-#h=3.7
-contourG(4,46,8,3.7,1)
-#h=4.3
-contourG(5,50,10,4.3,1)
-#h=4.7
-contourG(5,54,8,4.7,1)
-#h=5
-contourG(6,54,9,5,1)
+contourG(41,45,2,4,1)

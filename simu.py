@@ -4,6 +4,7 @@ import time
 from scipy.optimize import curve_fit
 
 #Code by Maria Alejandra Ramirez
+#Script: simu.py
 
 #------WHOLE SIMULATION-------
 #Whole simulation to obtain the contour graph of the cost
@@ -22,7 +23,7 @@ def repression(h,k,x):
 #------STABILIZATION-------------------
 #Stabilization data is done in another script for optimization
 
-#-----MORAN_FIT----------------
+#--------------------------------------
 #BIRTH
 #Generates a reproduction decision A,B or None
 #Param: h Hill coefficient
@@ -63,7 +64,8 @@ def Birth(h,kA,kB,A,B):
     #Birth B
     if Q2 <= TB:
         B += 1
-    #"else" ninguno
+
+    #"else" none (implicit)
 
     return A,B,probA,probB
 
@@ -96,7 +98,7 @@ def Death(A,B):
     return A,B
 
 #Normalize
-#Normalize the amount of plasmids to 1
+#Normalizes the amount of plasmids to 1
 #Param: AA amount of plasmids type A
 #Param: BB amount of plasmids type B
 #Return: cA, cB normalized amounts to 1
@@ -269,7 +271,7 @@ def Go(inA, inB, h, kA, kB):
 
 
 #--------REPETITION OF THE PROCESS & GRAPHS------------
-#Repetition of the process and corresponding
+#Repetition of the process and corresponding graphs
 #Param: rounds times that the process is repeated +1
 #Param: rep repetitions of the same general simulation
 #Param: cc iteration of the current repetition
@@ -279,28 +281,34 @@ def Go(inA, inB, h, kA, kB):
 #Param: kA K of plasmid type A
 #Param: kB K of plasmid type B
 #rep and cc are used to only graph one general simulation (optimization)
+#Return: FA calculated cost of type A
+#Return: covA variance of the slope fit parameter of type A
 def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
 
     #Start measuring simulation time
     t0 = time.time()
 
-    #-------Limits for the average and the corresponding fit--------
-    #Data of average of total plasmids is calculated in another script
+    #-------Limits for the average cuves and the corresponding fit----------
+
+    #Data of NT is calculated in another script
     # this data is recorded on csv files for optimization
+
+    #Note: to perform a simulation, the Total (NT) data for the Ks involved
+    # should be available **********
+
     NKb = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=1)
     Navg = np.genfromtxt("Total/"+str(h)+"_"+str(kA)+"Total.csv", delimiter=",",usecols=2)
 
-    #Average of total plasmids for this competition
+    #Quantity NT for the Ks involved in this compeitition
     inNKb = np.where(NKb==kB)[0]
     NNavg = Navg[inNKb]
 
     #Cuts of fit
     CutIniFit = 0
-    #print CutIniFit
     FinalFit = int(CutIniFit+50)
-    #print FinalFit
 
-    #Cut final for average line
+    #Cut final for average curve
+    #In this case is for the whole events range
     LENF = 400
 
     #Return of Go function (check Go comments)
@@ -347,14 +355,16 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     meanB = primerB
 
     #--------Fit-------
+
+    #Reminder
     #Cuts of fit
     #CutIniFit = 0
     #FinalFit = CutIniFit+50
 
     #Cut final for average line
-    #LENF = 250
+    #LENF = 400
 
-    #Fit is done in the average simulation line
+    #Fit is done in the average simulation curve
     #Array with delimitation that it is important for the fit
     LA = meanA[CutIniFit:FinalFit]
     LB = meanB[CutIniFit:FinalFit]
@@ -362,8 +372,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     #Proposed linear fit function
     #Param: m slope
     #Param: c y-intercept
-    #  should be around 0.5 since there are the same number of plasmids
-    #  in the beginning of the simulation
     def fun(x,m,c):
         return m*x + c
 
@@ -464,9 +472,6 @@ def repetitionHist(rounds, rep, cc, inA, inB, h, kA, kB):
     return FA, covA
 
 
-#Start measuring simulation time
-t0 = time.time()
-
 #Generates repetitions of the whole simulation to find an average of the Cost
 # for the same general simulation. It also gives the average of the Variance
 # of the fit of the slope
@@ -516,17 +521,22 @@ def full(h,kA,kB,inI,rep):
 
 #----------------COST_CONTOUR_FIGURE----------------
 
-#Creates the contour figure for the cost of type A (nxn graph)
+#Creates the contour figure for the average cost of type A (nxn graph)
+# and for the average Variance of the fit of the slopes
 #The cost for each competition is the average of rep repetitions
 # for the whole simulation of the given competition
-#Param: start Initial K
-#Param: stop Final K
+#Param: start Initial K for the range of competitions
+#Param: stop Final K for the range of competitions
 #Param: hop Amount of values between start and stop
 #Param: Hill coefficient
 #Param: rep Repetitions for the whole simulation of a given competition
 #Return: Graph of Cost, Graph of variance of slope parameter
 #Return: txt with info of cost and variance of slope parameter
 def contourG(start,stop,hop,h,rep):
+
+    #Start measuring simulation time
+    t0 = time.time()
+
     #Arrays for kA y kB that are gonna be used (nxn)
     # Example: np.linspace(1,3,3) = 1,2,3
     # Example: np.linspace(2,4,3) = 2,3,4
@@ -541,7 +551,7 @@ def contourG(start,stop,hop,h,rep):
     #Generate Grid - KKA is x KKB is y
     X, Y = np.meshgrid(KKA, KKB)
 
-    #Results of the cost of A = FA
+    #Results of the cost of A => FA
     Fi = np.ones((len(KKA),len(KKB)))
 
     #Print in Log txt ***
@@ -554,6 +564,10 @@ def contourG(start,stop,hop,h,rep):
 
     #Data of stabilization is calculated in another script
     # this data is recorded on csv files for optimization
+
+    #Note: to perform a simulation, the Stabilization data for the Ks involved
+    # should be available **********
+
     Sta = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=1)
     kIndex = np.genfromtxt("Stabilization/"+str(h)+"Stable.csv", delimiter=",",usecols=0)
 
@@ -648,26 +662,6 @@ def contourG(start,stop,hop,h,rep):
     n = text_file.write("Total Simu Time "+ str(tsim))
     text_file.close()
 
+#Example
 #contourG(start,stop,hop,h,rep)
-#h=2
-#contourG(2,18,9,2,3)
-#h=3
-#contourG(4,34,11,3,3)
-#contourG(1,3,3,3,1)
-#h=4
-#contourG(5,45,11,4,3)
-
-#h2.3
-contourG(3,24,8,2.3,3)
-#h=2.7
-contourG(3,30,10,2.7,3)
-#h=3.3
-contourG(4,40,10,3.3,3)
-#h=3.7
-contourG(4,46,8,3.7,3)
-#h=4.3
-contourG(5,50,10,4.3,3)
-#h=4.7
-contourG(5,54,8,4.7,3)
-#h=5
-contourG(6,54,9,5,3)
+contourG(2,18,9,2,3)
