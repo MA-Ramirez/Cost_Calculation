@@ -1,4 +1,14 @@
-# Cost_Calculation
+# Code: Cost calculation of an altruistic act for the plasmids-in-bacteria system through probabilistic simulations
+Bachelor of science (physics) thesis  -  Universidad de los Andes. Bogotá, Colombia
+
+Author: María Alejandra Ramírez
+
+Supervisor: Prof. Dr. Juan Manuel Pedraza
+
+Text available at:
+https://repositorio.uniandes.edu.co/bitstream/handle/1992/49156/u833901.pdf?sequence=1
+
+
 - Code and results to calculate the cost of an altruistic act for the system of plasmids in bacteria
 
 ###### The code for this simulation consists on 4 main parts.
@@ -61,6 +71,6 @@ running the code.
 The scripts *fit_KyN.py* and *fit_contour.py* are not needed to run a competition, since they are mainly used to establish mathematical relationships among variables.
 
 >For further information about this research, please contact:
-###### Author: Maria Alejandra Ramirez - B.S. in Physics (ma.ramirez@uniandes.edu.co)      
+###### Author: María Alejandra Ramírez 
 
 ###### Supervisor: Juan Manuel Pedraza - Professor at Universidad de los Andes
