@@ -74,3 +74,5 @@ The scripts *fit_KyN.py* and *fit_contour.py* are not needed to run a competitio
 ###### Author: María Alejandra Ramírez 
 
 ###### Supervisor: Juan Manuel Pedraza - Professor at Universidad de los Andes
+
+[![DOI](https://zenodo.org/badge/253108861.svg)](https://zenodo.org/badge/latestdoi/253108861)
