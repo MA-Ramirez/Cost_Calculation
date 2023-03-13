@@ -1,3 +1,5 @@
+![Title](https://user-images.githubusercontent.com/37352289/224666726-0886bbd8-d63e-41e4-b340-c69848807522.png)
+
 [![Thesis](https://img.shields.io/badge/Thesis-link-orange)](https://repositorio.uniandes.edu.co/bitstream/handle/1992/49156/u833901.pdf?sequence=1)
 [![DOI](https://zenodo.org/badge/253108861.svg)](https://zenodo.org/badge/latestdoi/253108861)
 
