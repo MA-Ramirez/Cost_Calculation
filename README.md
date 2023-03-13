@@ -1,3 +1,6 @@
+[![Thesis](https://img.shields.io/badge/Thesis-link-orange)](https://repositorio.uniandes.edu.co/bitstream/handle/1992/49156/u833901.pdf?sequence=1)
+[![DOI](https://zenodo.org/badge/253108861.svg)](https://zenodo.org/badge/latestdoi/253108861)
+
 # Code: Cost calculation of an altruistic act for the plasmids-in-bacteria system through probabilistic simulations
 Bachelor of science (physics) thesis  -  Universidad de los Andes. Bogotá, Colombia
 
@@ -74,5 +77,3 @@ The scripts *fit_KyN.py* and *fit_contour.py* are not needed to run a competitio
 ###### Author: María Alejandra Ramírez 
 
 ###### Supervisor: Juan Manuel Pedraza - Professor at Universidad de los Andes
-
-[![DOI](https://zenodo.org/badge/253108861.svg)](https://zenodo.org/badge/latestdoi/253108861)
